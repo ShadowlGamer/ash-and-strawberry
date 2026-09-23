@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ash and strawberry</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="ash"></canvas>
+<div class="vignette"></div>
+
+<header class="topbar">
+  <button id="toc-toggle" aria-label="contents" class="icon-btn">☰</button>
+  <div class="topbar-title">ash and strawberry</div>
+  <div class="topbar-spacer"></div>
+
+  <div class="lang-switch">
+    <button data-lang="en" class="lang-btn active">en</button>
+    <button data-lang="ru" class="lang-btn">ru</button>
+  </div>
+
+  <button id="theme-toggle" aria-label="theme" class="icon-btn" title="theme">
+    <span class="theme-icon-dark">☾</span>
+    <span class="theme-icon-light">☀</span>
+  </button>
+
+  <button id="chars-toggle" class="text-btn" aria-label="characters">
+    <span class="btn-text" data-i18n="characters">characters</span>
+    <span class="btn-icon" aria-hidden="true">◉</span>
+  </button>
+
+  <button id="gallery-toggle" class="text-btn" aria-label="gallery">
+    <span class="btn-text" data-i18n="gallery">gallery</span>
+    <span class="btn-icon" aria-hidden="true">▦</span>
+  </button>
+
+  <button id="settings-toggle" aria-label="settings" class="icon-btn">Aa</button>
+</header>
+
+<div class="progress"><div id="progress-bar"></div></div>
+
+<aside id="toc" class="toc">
+  <div class="panel-header">
+    <span data-i18n="contents">contents</span>
+    <button id="toc-close" class="panel-close">×</button>
+  </div>
+  <nav id="toc-list"></nav>
+</aside>
+
+<aside id="chars" class="chars">
+  <div class="panel-header">
+    <span data-i18n="characters">characters</span>
+    <button id="chars-close" class="panel-close">×</button>
+  </div>
+  <ul class="char-list" id="chars-list"></ul>
+</aside>
+
+<div id="gallery-modal" class="gallery-modal">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <span data-i18n="gallery">gallery</span>
+      <button id="gallery-close" class="panel-close">×</button>
+    </div>
+    <div class="gallery-stage">
+      <button id="gallery-prev" class="gallery-nav" aria-label="previous">←</button>
+      <div class="gallery-frame" id="gallery-frame">
+        <img id="gallery-img" src="" alt="">
+        <div id="gallery-fallback" class="gallery-fallback"></div>
+      </div>
+      <button id="gallery-next" class="gallery-nav" aria-label="next">→</button>
+    </div>
+    <div class="gallery-footer">
+      <div id="gallery-name" class="gallery-name"></div>
+      <div id="gallery-counter" class="gallery-counter"></div>
+    </div>
+  </div>
+</div>
+
+<div id="overlay" class="overlay"></div>
+
+<main id="reader" class="reader">
+  <div class="chapter-label" id="chapter-label"></div>
+  <div id="song-row" class="song-row"></div>
+  <article id="page" class="page"></article>
+</main>
+
+<nav class="pager">
+  <div class="pager-inner">
+    <button id="prev" class="pager-btn" data-i18n="previous">← previous</button>
+    <span id="counter" class="counter"></span>
+    <button id="next" class="pager-btn" data-i18n="next">next →</button>
+  </div>
+</nav>
+
+<div id="settings" class="settings">
+  <label><span data-i18n="fontSize">font size</span>
+    <input type="range" id="font-size" min="14" max="24" value="19">
+  </label>
+  <label><span data-i18n="fallingAsh">falling ash</span>
+    <input type="checkbox" id="ash-toggle" checked>
+  </label>
+</div>
+
+<audio id="bg-audio" preload="auto"></audio>
+
+<script src="js/characters.js"></script>
+<script src="js/songs.js"></script>
+
+<script src="js/story/00-prologue.js"></script>
+<script src="js/story/01-chapter1.js"></script>
+<script src="js/story/02-chapter2.js"></script>
+<script src="js/story/03-chapter3.js"></script>
+<script src="js/story/04-chapter3-5.js"></script>
+<script src="js/story/05-chapter4.js"></script>
+<script src="js/story/06-chapter5.js"></script>
+<script src="js/story/07-chapter6.js"></script>
+<script src="js/story/08-chapter7.js"></script>
+<script src="js/story/09-chapter8.js"></script>
+<script src="js/story/10-chapter9.js"></script>
+
+<script src="js/story/ru/00-prologue.js"></script>
+<script src="js/story/ru/01-chapter1.js"></script>
+<script src="js/story/ru/02-chapter2.js"></script>
+<script src="js/story/ru/03-chapter3.js"></script>
+<script src="js/story/ru/04-chapter3-5.js"></script>
+<script src="js/story/ru/05-chapter4.js"></script>
+<script src="js/story/ru/06-chapter5.js"></script>
+<script src="js/story/ru/07-chapter6.js"></script>
+<script src="js/story/ru/08-chapter7.js"></script>
+<script src="js/story/ru/09-chapter8.js"></script>
+<script src="js/story/ru/10-chapter9.js"></script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
