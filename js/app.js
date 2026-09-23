@@ -69,7 +69,11 @@
     galleryClose:   document.getElementById('gallery-close'),
     themeToggle:    document.getElementById('theme-toggle'),
     songRow:        document.getElementById('song-row'),
-    langBtns:       document.querySelectorAll('.lang-btn')
+    langBtns:       document.querySelectorAll('.lang-btn'),
+    miniPlayer:     document.getElementById('mini-player'),
+    miniTitle:      document.getElementById('mini-title'),
+    miniBody:       document.getElementById('mini-body'),
+    miniClose:      document.getElementById('mini-close')
   };
 
   let lang = localStorage.getItem('ash-lang') || 'en';
@@ -85,7 +89,7 @@
     });
     el.langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     document.documentElement.lang = lang;
-    renderGallery(); // refresh names in the gallery when language changes
+    renderGallery();
   }
 
   function renderText(text) {
@@ -118,11 +122,8 @@
       ch.pages.forEach((pg, pi) => flat.push({ ci, pi, ch, text: pg }));
     });
     if (keepPosition && prevItem) {
-      // 1st try: same chapter id AND same page number inside it
       let fi = flat.findIndex(f => f.ch.id === prevItem.ch.id && f.pi === prevItem.pi);
-      // 2nd try: same chapter id, first page
       if (fi < 0) fi = flat.findIndex(f => f.ch.id === prevItem.ch.id);
-      // 3rd try: first page
       index = fi >= 0 ? fi : 0;
     } else {
       const saved = parseInt(localStorage.getItem('ash-pos-' + lang) || '0', 10);
@@ -171,28 +172,72 @@
     });
   }
 
-  // ---------- song pill ----------
+  // ---------- song pill + floating mini player ----------
+  let currentSongId = null;
+
   function renderSong(chapterId) {
     el.songRow.innerHTML = '';
     const s = (window.SONGS || {})[chapterId];
     if (!s || !s.title) return;
 
-    const pill = document.createElement('a');
+    const pill = document.createElement('button');
     pill.className = 'song-pill';
-    pill.href = s.url || '#';
-    pill.target = '_blank';
-    pill.rel = 'noopener noreferrer';
+    if (currentSongId === chapterId) pill.classList.add('playing');
     pill.innerHTML =
       `<span class="song-note">♪</span>` +
       `<span>${s.title}</span>` +
       `<span class="song-label">· ${I18N[lang].aSong}</span>`;
-
-    if (!s.url) {
-      pill.style.pointerEvents = 'none';
-      pill.style.opacity = '0.5';
-    }
+    pill.addEventListener('click', () => toggleSong(chapterId, s));
     el.songRow.appendChild(pill);
   }
+
+  function extractYouTubeId(url) {
+    if (!url) return '';
+    const m = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([a-zA-Z0-9_-]{6,})/);
+    return m ? m[1] : '';
+  }
+
+  function toggleSong(chapterId, s) {
+    if (!s || !s.url) return;
+
+    // clicking the same song again stops it
+    if (currentSongId === chapterId && el.miniPlayer.classList.contains('open')) {
+      stopMiniPlayer();
+      return;
+    }
+
+    // stop whatever was playing before
+    stopMiniPlayer();
+
+    const vid = extractYouTubeId(s.url);
+    if (!vid) {
+      // not a youtube link — just open it
+      window.open(s.url, '_blank');
+      return;
+    }
+
+    el.miniBody.innerHTML = `<iframe
+      src="https://www.youtube.com/embed/${vid}?autoplay=1&rel=0&modestbranding=1"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen></iframe>`;
+    el.miniTitle.textContent = s.title;
+    el.miniPlayer.classList.add('open');
+    currentSongId = chapterId;
+
+    // refresh pill states
+    document.querySelectorAll('.song-pill').forEach(p => p.classList.remove('playing'));
+    const activePill = el.songRow.querySelector('.song-pill');
+    if (activePill) activePill.classList.add('playing');
+  }
+
+  function stopMiniPlayer() {
+    el.miniBody.innerHTML = '';
+    el.miniPlayer.classList.remove('open');
+    currentSongId = null;
+    document.querySelectorAll('.song-pill').forEach(p => p.classList.remove('playing'));
+  }
+
+  el.miniClose.addEventListener('click', stopMiniPlayer);
 
   function go(delta) {
     const n = index + delta;
@@ -205,15 +250,12 @@
 
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT') return;
-
-    // gallery navigation takes priority when gallery is open
     if (el.galleryModal.classList.contains('open')) {
       if (e.key === 'ArrowRight') { galleryStep(1); return; }
       if (e.key === 'ArrowLeft')  { galleryStep(-1); return; }
       if (e.key === 'Escape')     { closeAll(); return; }
       return;
     }
-
     if (e.key === 'ArrowRight' || e.key === ' ') go(1);
     if (e.key === 'ArrowLeft') go(-1);
     if (e.key === 'Escape') closeAll();
@@ -240,7 +282,6 @@
     });
   }
 
-  // ---------- close helpers ----------
   function closeToc()      { el.toc.classList.remove('open'); if (!el.chars.classList.contains('open')) el.overlay.classList.remove('show'); }
   function closeChars()    { el.chars.classList.remove('open'); el.charsToggle.classList.remove('active'); }
   function closeSettings() { el.settings.classList.remove('open'); }
@@ -251,7 +292,6 @@
     el.overlay.classList.remove('show');
   }
 
-  // ---------- toc toggle ----------
   el.tocToggle.addEventListener('click', () => {
     const wasOpen = el.toc.classList.contains('open');
     if (wasOpen) { closeToc(); return; }
@@ -260,13 +300,8 @@
     el.overlay.classList.add('show');
   });
   el.tocClose.addEventListener('click', closeToc);
+  el.overlay.addEventListener('click', closeToc);
 
-  el.overlay.addEventListener('click', () => {
-    closeToc();
-    // NOTE: characters panel intentionally stays open until you click "characters" again
-  });
-
-  // ---------- characters dropdown ----------
   function buildCharList() {
     el.charsList.innerHTML = '';
     (window.CHARACTERS || []).forEach(c => {
@@ -285,11 +320,7 @@
   }
 
   el.charsToggle.addEventListener('click', () => {
-    // toggle: if open -> close; if closed -> open (and close other panels)
-    if (el.chars.classList.contains('open')) {
-      closeChars();
-      return;
-    }
+    if (el.chars.classList.contains('open')) { closeChars(); return; }
     closeSettings();
     closeToc();
     el.chars.classList.add('open');
@@ -297,7 +328,7 @@
   });
   el.charsClose.addEventListener('click', closeChars);
 
-  // ---------- gallery viewer ----------
+  // ---------- gallery ----------
   let galleryIndex = 0;
 
   function galleryStep(delta) {
@@ -309,18 +340,15 @@
 
   function renderGallery() {
     const arr = window.CHARACTERS || [];
-    if (!arr.length) return;
+    if (!arr.length || !el.galleryImg) return;
     const c = arr[galleryIndex];
 
-    // name + counter
     el.galleryName.textContent = c[lang] || c.en;
     el.galleryName.style.color = c.color;
     el.galleryCounter.textContent = (galleryIndex + 1) + ' / ' + arr.length;
 
-    // frame background tinted with the character's color (visible if image fails)
     el.galleryFrame.style.background = c.color;
 
-    // reset image / fallback
     el.galleryFallback.classList.remove('show');
     el.galleryFallback.style.background = c.color;
     el.galleryImg.style.display = '';
@@ -346,7 +374,6 @@
   el.galleryClose.addEventListener('click', closeGallery);
   el.galleryPrev.addEventListener('click', () => galleryStep(-1));
   el.galleryNext.addEventListener('click', () => galleryStep(1));
-
   el.galleryModal.addEventListener('click', e => {
     if (e.target === el.galleryModal) closeGallery();
   });
@@ -379,7 +406,6 @@
     el.ashCanvas.style.display = 'none';
   }
 
-  // ---------- theme ----------
   const savedTheme = localStorage.getItem('ash-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
@@ -391,7 +417,6 @@
     redrawAsh();
   });
 
-  // ---------- language ----------
   el.langBtns.forEach(b => {
     b.addEventListener('click', () => {
       if (b.dataset.lang === lang) return;
@@ -405,7 +430,6 @@
     });
   });
 
-  // ---------- boot ----------
   applyI18n();
   rebuildFlat(false);
   buildToc();
