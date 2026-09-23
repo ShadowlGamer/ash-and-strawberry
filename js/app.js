@@ -36,6 +36,73 @@
     "chapter9":   { en: "chapter 9",   ru: "глава 9" }
   };
 
+  // words that, after a comma, mean the dialogue is still going
+  const DIALOGUE_CONTINUES = new Set([
+    // english — first person and friends
+    'i','we','me','us','my','our','mine','ours',
+    "i'm","i've","i'll","i'd",
+    'you','your','yours',
+    'and','but','or','so','yet','for','nor',
+    'please','yes','no','yeah','nope','okay','ok','well',
+    'how','what','where','when','why','who','which',
+    'if','that','this','these','those',
+    // russian — first person and friends
+    'я','мы','меня','нас','мой','моя','моё','мои','наш','наша','наше','наши',
+    'и','но','или','да','нет','пожалуйста','хорошо','ладно','ну','ага',
+    'как','что','где','когда','почему','зачем','кто','который',
+    'если','это','этот','эта','эти',
+  ]);
+
+  // find where dialogue ends and narration begins inside a coloured section
+  function findColorEnd(text) {
+    let start = 0;
+    while (true) {
+      const commaIdx = text.indexOf(',', start);
+      if (commaIdx < 0) return text.length;
+      const after = text.slice(commaIdx + 1).replace(/^\s+/, '');
+      const m = after.match(/^([a-zA-Zа-яА-ЯёЁ']+)/);
+      const nextWord = m ? m[1].toLowerCase() : '';
+      if (DIALOGUE_CONTINUES.has(nextWord)) {
+        start = commaIdx + 1;
+        continue;
+      }
+      return commaIdx + 1;
+    }
+  }
+
+  function renderColoredSection(text, cls) {
+    // only colour sections that start with "- " (dialogue marker)
+    if (!text.startsWith('- ')) return text;
+
+    const end = findColorEnd(text);
+    if (end >= text.length) {
+      return `<span class="${cls}">${text}</span>`;
+    }
+    const dialogue = text.slice(0, end);
+    const narration = text.slice(end);
+    return `<span class="${cls}">${dialogue}</span>${narration}`;
+  }
+
+  function renderText(text) {
+    return text.split(/\n{2,}/).map(par => {
+      const re = /\[\[(\/|[a-z\-]+)\]\]/g;
+      let out = '';
+      let last = 0;
+      let cls = null;
+      let m;
+      while ((m = re.exec(par)) !== null) {
+        const before = par.slice(last, m.index);
+        if (before) out += cls ? renderColoredSection(before, cls) : before;
+        if (m[1] === '/') cls = null;
+        else              cls = 'c-' + m[1];
+        last = m.index + m[0].length;
+      }
+      const rest = par.slice(last);
+      if (rest) out += cls ? renderColoredSection(rest, cls) : rest;
+      return `<p>${out}</p>`;
+    }).join('');
+  }
+
   const el = {
     page:           document.getElementById('page'),
     chapterLabel:   document.getElementById('chapter-label'),
@@ -87,26 +154,6 @@
     el.langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     document.documentElement.lang = lang;
     renderGallery();
-  }
-
-  function renderText(text) {
-    return text.split(/\n{2,}/).map(par => {
-      const re = /\[\[(\/|[a-z\-]+)\]\]/g;
-      let out = '';
-      let last = 0;
-      let cls = null;
-      let m;
-      while ((m = re.exec(par)) !== null) {
-        const before = par.slice(last, m.index);
-        if (before) out += cls ? `<span class="${cls}">${before}</span>` : before;
-        if (m[1] === '/') cls = null;
-        else              cls = 'c-' + m[1];
-        last = m.index + m[0].length;
-      }
-      const rest = par.slice(last);
-      if (rest) out += cls ? `<span class="${cls}">${rest}</span>` : rest;
-      return `<p>${out}</p>`;
-    }).join('');
   }
 
   let flat = [];
@@ -169,7 +216,7 @@
     });
   }
 
-  // ---------- song pill: plays audio in background, no visible player ----------
+  // ---------- song pill ----------
   let currentSongId = null;
 
   function renderSong(chapterId) {
@@ -192,19 +239,12 @@
 
   function toggleSong(chapterId, s) {
     if (!s || !s.url) return;
-
-    // same song already loaded -> toggle play/pause
     if (currentSongId === chapterId) {
-      if (el.bgAudio.paused) {
-        el.bgAudio.play().catch(() => {});
-      } else {
-        el.bgAudio.pause();
-      }
+      if (el.bgAudio.paused) el.bgAudio.play().catch(() => {});
+      else                   el.bgAudio.pause();
       updatePillStates();
       return;
     }
-
-    // different song -> switch and play
     currentSongId = chapterId;
     el.bgAudio.src = s.url;
     el.bgAudio.currentTime = 0;
@@ -224,7 +264,6 @@
   el.bgAudio.addEventListener('pause', updatePillStates);
   el.bgAudio.addEventListener('ended', updatePillStates);
 
-  // ---------- navigation ----------
   function go(delta) {
     const n = index + delta;
     if (n < 0 || n >= flat.length) return;
@@ -247,7 +286,6 @@
     if (e.key === 'Escape') closeAll();
   });
 
-  // ---------- toc ----------
   function buildToc() {
     el.tocList.innerHTML = '';
     storySet().forEach((ch, i) => {
@@ -258,8 +296,7 @@
       b.addEventListener('click', () => {
         const fi = flat.findIndex(f => f.ci === i);
         if (fi >= 0) {
-          index = fi;
-          render();
+          index = fi; render();
           el.toc.classList.remove('open');
           el.overlay.classList.remove('show');
         }
@@ -272,11 +309,7 @@
   function closeChars()    { el.chars.classList.remove('open'); el.charsToggle.classList.remove('active'); }
   function closeSettings() { el.settings.classList.remove('open'); }
   function closeGallery()  { el.galleryModal.classList.remove('open'); }
-
-  function closeAll() {
-    closeToc(); closeChars(); closeSettings(); closeGallery();
-    el.overlay.classList.remove('show');
-  }
+  function closeAll()      { closeToc(); closeChars(); closeSettings(); closeGallery(); el.overlay.classList.remove('show'); }
 
   el.tocToggle.addEventListener('click', () => {
     const wasOpen = el.toc.classList.contains('open');
@@ -307,14 +340,12 @@
 
   el.charsToggle.addEventListener('click', () => {
     if (el.chars.classList.contains('open')) { closeChars(); return; }
-    closeSettings();
-    closeToc();
+    closeSettings(); closeToc();
     el.chars.classList.add('open');
     el.charsToggle.classList.add('active');
   });
   el.charsClose.addEventListener('click', closeChars);
 
-  // ---------- gallery ----------
   let galleryIndex = 0;
 
   function galleryStep(delta) {
@@ -356,7 +387,6 @@
     renderGallery();
     el.galleryModal.classList.add('open');
   });
-
   el.galleryClose.addEventListener('click', closeGallery);
   el.galleryPrev.addEventListener('click', () => galleryStep(-1));
   el.galleryNext.addEventListener('click', () => galleryStep(1));
@@ -364,12 +394,9 @@
     if (e.target === el.galleryModal) closeGallery();
   });
 
-  // ---------- settings ----------
   el.settingsToggle.addEventListener('click', () => {
     const wasOpen = el.settings.classList.contains('open');
-    closeSettings();
-    closeToc();
-    closeChars();
+    closeSettings(); closeToc(); closeChars();
     if (!wasOpen) el.settings.classList.add('open');
   });
 
