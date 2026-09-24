@@ -29,7 +29,7 @@ when she came out, the house was quiet,`,
 `not the silence that was before, not dense, not cold, another, empty, as if someone had taken everything out of the house, as if someone had taken the air, as if someone had stolen life,
 [[toma]]- amir,[[/]] she called,
 no one answered,
-she went into his room, empty, toys scattered, the red jacket, the very one he wore every day, lay on the floor, as if he had taken it off and left, as if he would return, as if everything was fine,
+she went into his room, empty, toys scattered, the red sweater, the very one he wore every day, lay on the floor, as if he had taken it off and left, as if he would return, as if everything was fine,
 but on the bed, among scattered blocks, among red and blue and yellow and green, lay a fawn,
 a soft toy, small, with spots on its back, with thin legs, with big eyes, the very one iris had given amir on his first birthday, the very one he adored, the very one he always took with him, the very one he never left,
 he left it, so he had been taken, so he had not left on his own, so someone had entered, someone had taken him, someone had stolen him,
@@ -40,59 +40,59 @@ the front door was open, not wide open, ajar, as if someone had gone out and not
 toma called shadow, then the police, then lara,
 lara arrived twenty minutes later,
 she entered the apartment, looked around, a smell, familiar, something metallic, something warm, something alien, but not blood, not blood yet, for now only fear, for now only emptiness, for now only death,
-[[lara]]- tell me everything,[[/]] she said, [[lara]]- every detail,`,
+[[lara]]- tell me everything,[[/]] she said, [[lara]]- every detail,[[/]] `,
 
-`toma told her, incoherently, confusedly, she was in the bathroom, about twenty minutes, maybe thirty, when she came out, amir was gone, door open, jacket on the floor, toys scattered, fawn on the bed,
+`toma told her, incoherently, confusedly, she was in the bathroom, about twenty minutes, maybe thirty, when she came out, amir was gone, door open, sweater on the floor, toys scattered, fawn on the bed,
 [[lara]]- fawn,[[/]] lara repeated,
-[[toma]]- a soft toy, iris gave it, amir always took it with him, always, never left it, even in the bathroom, even at the table, even in bed, he could not leave it, so,
+[[toma]]- a soft toy, iris gave it, amir always took it with him, always, never left it, even in the bathroom, even at the table, even in bed, he could not leave it, so,[[/]] 
 she stopped, her throat closed, tears flowed down her cheeks,
-[[lara]]- so he was taken,[[/]] lara finished, [[lara]]- he did not leave on his own,
-[[toma]]- yes,
-[[lara]]- was the door open,
-[[toma]]- yes, ajar,
-[[lara]]- could he have gone out by himself,
-[[toma]]- no, he cannot reach the lock, i put it high on purpose,
+[[lara]]- so he was taken,[[/]] lara finished, [[lara]]- he did not leave on his own,[[/]] 
+[[toma]]- yes,[[/]] 
+[[lara]]- was the door open,[[/]] 
+[[toma]]- yes, ajar,[[/]] 
+[[lara]]- could he have gone out by himself,[[/]] 
+[[toma]]- no, he cannot reach the lock, i put it high on purpose,[[/]] 
 lara nodded, wrote it down,
-[[lara]]- who else has keys,
-[[toma]]- white, our friend,
-[[lara]]- white,[[/]] lara repeated, [[lara]]- the same one who came after the funeral,
-[[toma]]- yes,
+[[lara]]- who else has keys,[[/]] 
+[[toma]]- white, our friend,[[/]] 
+[[lara]]- white,[[/]] lara repeated, [[lara]]- the same one who came after the funeral,[[/]] 
+[[toma]]- yes,[[/]] 
 lara wrote it down, something in her eyes changed, something hardened, something became cold, like ice, like steel, like a knife,
-[[lara]]- we will find him,[[/]] she said, [[lara]]- i promise,
+[[lara]]- we will find him,[[/]] she said, [[lara]]- i promise,[[/]] 
 
 amir was found two days later,
 by the roadside, thirty kilometers from the city, in the forest, more precisely, what was left of him,
-the body was burned, almost beyond recognition, only the red jacket with the blue stripe, the only thing that had not burned, it was nearby, like a sign, like a message, like a mockery,
+the body was burned, almost beyond recognition, only the red sweater with the blue stripe, the only thing that had not burned, it was nearby, like a sign, like a message, like a mockery,
 and an axe,
 old, rusty, with a wooden handle, the murder weapon, someone had left it next to the body, on purpose, so they would find it, so they would understand, so they would be horrified,`,
 
 `lara stood over the body and looked,
 she had seen much, dismembered bodies, burned corpses, children killed in their own beds, but this, this was different, this was worse, this was monstrous,
-[[lara]]- he wanted us to see this,[[/]] she said quietly, [[lara]]- he wanted her to see this,
+[[lara]]- he wanted us to see this,[[/]] she said quietly, [[lara]]- he wanted her to see this,[[/]] 
 pavel, a firefighter, who was the first to arrive on the call, stood aside, young, twenty years old, serious, cold, he had seen much, but this, for the first time,
-[[pavel]]- a child,[[/]] he said, his voice hoarse, [[pavel]]- he was, three,
+[[pavel]]- a child,[[/]] he said, his voice hoarse, [[pavel]]- he was, three,[[/]] 
 [[lara]]- three,[[/]] lara confirmed,
 pavel turned away, his shoulders trembled, he did not cry, could not, his profession did not allow it, but inside, inside he screamed, inside he howled, inside he died,
 lara did not comfort him, just put a hand on his shoulder, for a second, then removed it,
 [[lara]]- you are not to blame,[[/]] she said,
-[[pavel]]- i know,
-[[lara]]- no, you do not know, but one day you will,
+[[pavel]]- i know,[[/]] 
+[[lara]]- no, you do not know, but one day you will,[[/]] 
 pavel nodded, did not believe, but nodded,`,
 
 `toma did not cry when she was told,
 she sat on the sofa, held the fawn, the soft toy, the very one iris had given amir, the very one he had left on the bed, the very one he never left,
-[[lara]]- mrs said,[[/]] lara said, [[lara]]- we found your son,
-[[toma]]- i know,
-[[lara]]- i am very sorry,
-[[toma]]- i know,
-[[lara]]- we will find the one who did this,
-[[toma]]- i know,
+[[lara]]- mrs said,[[/]] lara said, [[lara]]- we found your son,[[/]] 
+[[toma]]- i know,[[/]] 
+[[lara]]- i am very sorry,[[/]] 
+[[toma]]- i know,[[/]] 
+[[lara]]- we will find the one who did this,[[/]] 
+[[toma]]- i know,[[/]] 
 she did not cry, did not scream, did not become hysterical, just sat, looked at the wall, into emptiness, into nowhere, held the fawn, soft, warm, alive, as if amir had just held it, as if amir were still here, as if amir had not left, as if amir had not disappeared, as if amir had not vanished,
 [[toma]]- i want to see him,[[/]] she said,
-[[lara]]- it is, not recommended,
-[[toma]]- i want to see him,
+[[lara]]- it is, not recommended,[[/]] 
+[[toma]]- i want to see him,[[/]] 
 lara paused, then nodded,
-[[lara]]- okay, i will take you,
+[[lara]]- okay, i will take you,[[/]] 
 they drove in silence, toma looked out the window, at the road, at the forest, at the roadside, where amir was found, where he died, where he burned, where he was no more,
 they stopped by the roadside, lara got out first, toma after her, slowly, as if every step took her last strength, as if every step was the last, as if every step was death,
 the body was covered with a sheet, white, clean, like snow, like a shroud, like death,
@@ -102,7 +102,7 @@ lara lifted the sheet,`,
 she did not cry, did not scream, did not become hysterical, just stood, looked, and was silent,
 then, slowly, she sank to her knees, right there, by the roadside, onto the ground, cold, dirty, dead,
 she laid the fawn next to the body, the soft toy, the very one iris had given amir, the very one he had left on the bed, the very one he never left,
-[[toma]]- now you are not alone,[[/]] she whispered, [[toma]]- now you are with iris, now you are together, now you,
+[[toma]]- now you are not alone,[[/]] she whispered, [[toma]]- now you are with iris, now you are together, now you,[[/]] 
 she stopped, tears flowed down her cheeks, along the scar, along her lips, she did not wipe them, could not,
 she stood up, slowly, as if every step was the last, as if every step was death,
 she went back to the car, did not turn around, did not look, did not say goodbye, because she could not, because she did not want to, because she did not know how,
@@ -111,7 +111,7 @@ she picked it up, pressed it to her chest, soft, warm, alive, as if amir had jus
 she got into the car, started the engine, drove,
 the fawn lay beside her, on the passenger seat, soft, warm, alive, as if amir were looking at her, as if amir were waiting, as if amir were asking, find him, find the one who did this, find him,
 lara gripped the steering wheel, tightly, so tightly that her knuckles turned white,
-[[lara]]- i will find him,[[/]] she whispered, [[lara]]- i promise,`,
+[[lara]]- i will find him,[[/]] she whispered, [[lara]]- i promise,[[/]] `,
 
 `that night toma saw the dream again,
 the doe stood in the clearing, large, majestic, with huge eyes, brown, deep, full of sorrow, her fur was dark brown, almost black, on the right side of her muzzle, a vertical scar, from forehead to jaw, through the eye, through everything,

@@ -22,35 +22,35 @@ small, white, almost toy like, as if a person could not be in it, as if a son co
 white stood aside,
 he always stood aside, at iris's funeral, aside, at the wake, aside, now, again, as if he did not want to be part of it, as if he were observing, as if he were evaluating, as if he were waiting,
 he was in black, perfectly dressed, shirt, snow white, starched, trousers, creases like blades, shoes, polished to a shine, white curls styled neatly, not a single strand out of place, the scar on his left cheek, pale, almost invisible, his eyes, gray, warm, full of tears,
-he cried, quietly, soundlessly, tears flowed down his cheeks and dripped onto his black jacket, leaving dark spots, he did not wipe them, did not hide them, as if he wanted everyone to see, as if he wanted everyone to know how he suffered, as if he wanted everyone to believe,
-[[other]]- poor boy,[[/]] whispered a woman in the crowd, a neighbor, mrs higgins, [[other]]- so young, so kind, he helped this family so much,
-[[other]]- yes,[[/]] agreed another, [[other]]- a real friend, always there, always supportive,`,
+he cried, quietly, soundlessly, tears flowed down his cheeks and dripped onto his black sweater, leaving dark spots, he did not wipe them, did not hide them, as if he wanted everyone to see, as if he wanted everyone to know how he suffered, as if he wanted everyone to believe,
+[[other]]- poor boy,[[/]] whispered a woman in the crowd, a neighbor, mrs higgins, [[other]]- so young, so kind, he helped this family so much,[[/]] 
+[[other]]- yes,[[/]] agreed another, [[other]]- a real friend, always there, always supportive,[[/]] `,
 
 `toma heard them, out of the corner of her ear, through the cotton that seemed to fill her whole head, she heard but did not understand, the words had no meaning, nothing had meaning,
 white came closer,
 slowly, carefully, like a predator who does not want to frighten his prey, like a bear who knows the doe will not run, because she has nowhere to run, because she is already broken, because she is already his,
-[[vait]]- toma,[[/]] he said quietly, [[vait]]- toma, if you need anything, anything, i am here, i am always here,
+[[vait]]- toma,[[/]] he said quietly, [[vait]]- toma, if you need anything, anything, i am here, i am always here,[[/]] 
 she turned her head, slowly, as if every movement required effort, as if every movement was a feat,
 she looked at him, left, brown, deep, full of emptiness, right, with the scar, emptied and gray,
 [[toma]]- thank you,[[/]] she said, her voice, alien, empty,
 white nodded, tears flowed down his cheeks, he took her hand, with his long, well kept fingers, squeezed, tightly, too tightly, as if holding a trophy, as if holding prey, as if holding what belonged to him,
-[[vait]]- i know what it is like,[[/]] he whispered, [[vait]]- to lose, i know,
+[[vait]]- i know what it is like,[[/]] he whispered, [[vait]]- to lose, i know,[[/]] 
 toma looked at him,
 she did not know, did not know that this man was the killer of her son, that his tears were not grief but pleasure, that his words were a lie, that his sympathy was a game, she did not know,
 but something inside her, something ancient, something instinctive, something that had lived in her since birth, tensed, like a doe who smells a bear, like a mother who senses danger, like death who knows it will soon come,
 she did not understand, but she felt, and it was worse, worse than understanding, worse than knowing, worse than anything in the world,
 [[toma]]- do not,[[/]] she said, quietly, but firmly, as if she cut him off,
 white froze, for a second, something flashed in his eyes, something cold, something dark, something he quickly hid behind the mask of mourning,
-[[vait]]- do not what, toma,
-[[toma]]- do not hold me,
+[[vait]]- do not what, toma,[[/]] 
+[[toma]]- do not hold me,[[/]] 
 he let go of her hand, slowly, as if reluctantly, as if it was hard for him, as if he were losing something important,
-[[vait]]- forgive me,[[/]] he said, [[vait]]- i just, i just wanted to help,
-[[toma]]- i know,`,
+[[vait]]- forgive me,[[/]] he said, [[vait]]- i just, i just wanted to help,[[/]] 
+[[toma]]- i know,[[/]] `,
 
 `she turned away, looked at the coffin, at the small white coffin, at her son, at her life, at her death,
 the priest began to read the prayer, the words floated in the air, alien, incomprehensible, unnecessary, toma did not listen, she looked at the coffin, and thought,
 thought about amir,
-about how he was born, how he cried, how he smiled, how he took his first steps, how he said his first words, how he called iris ii, how he loved the red jacket with the blue stripe, how he built towers from blocks, how he waited for iris, how he asked, where is ii,
+about how he was born, how he cried, how he smiled, how he took his first steps, how he said his first words, how he called iris ii, how he loved the red sweater with the blue stripe, how he built towers from blocks, how he waited for iris, how he asked, where is ii,
 how he was killed,
 she thought about how he was killed, how he was burned, how he was left by the roadside, how he was thrown away, how he was forgotten,
 someone took her son, someone led him out of the house, someone led him into the forest, someone hit him with an axe, someone set his body on fire, someone left him to die, alone, in the dark, in the cold, in the fire,
@@ -64,7 +64,7 @@ she did not cry, did not scream, did not become hysterical, just stood, looked, 
 `then, when it was all over, she leaned down, slowly, sank to her knees, right there, by the grave, onto the ground, cold, wet, dead,
 and laid the fawn on the mound,
 a soft toy, gray with time, with a torn off eye, with faded spots, the very one iris had given amir, the very one he never let go of, the very one they found on his bed,
-[[toma]]- now you are not alone,[[/]] she whispered, [[toma]]- now you are with iris, now you are together, now you,
+[[toma]]- now you are not alone,[[/]] she whispered, [[toma]]- now you are with iris, now you are together, now you,[[/]] 
 she stopped, her throat closed, tears, which seemed to be no more, flowed down her cheeks,
 [[toma]]- now you are home,[[/]] she finished,
 she stood up, slowly, as if every step took her last strength, as if every step was the last, as if every step was death,
@@ -80,26 +80,26 @@ he sat beside her, silently, did not take her hand, did not hug her, just sat, b
 [[toma]]- i do not know,[[/]] she answered, honestly, empty,
 they were silent, for a long time, very long, people passed by, cars drove on the road, somewhere music played, life continued, for everyone, except them,`,
 
-`[[toma]]- i cannot forgive him,[[/]] toma said, [[toma]]- myself, i cannot forgive myself,
-[[shadow]]- you are not to blame,
-[[toma]]- i am to blame, i trusted him, i let him be near them, i,
-[[shadow]]- you did not know,
-[[toma]]- i should have known,
-[[shadow]]- how, how could you know, he was a friend, he was,
-[[toma]]- he was a bear,[[/]] she interrupted, [[toma]]- and i was a doe, i should have felt it, should have seen it, should have,
+`[[toma]]- i cannot forgive him,[[/]] toma said, [[toma]]- myself, i cannot forgive myself,[[/]] 
+[[shadow]]- you are not to blame,[[/]] 
+[[toma]]- i am to blame, i trusted him, i let him be near them, i,[[/]] 
+[[shadow]]- you did not know,[[/]] 
+[[toma]]- i should have known,[[/]] 
+[[shadow]]- how, how could you know, he was a friend, he was,[[/]] 
+[[toma]]- he was a bear,[[/]] she interrupted, [[toma]]- and i was a doe, i should have felt it, should have seen it, should have,[[/]] 
 she stopped, tears flowed down her cheeks, along the scar, along her lips, she did not wipe them,
 shadow hugged her, pressed her to him, tightly, he could not let go, could not lose another, could not,
-[[shadow]]- we will get through this,[[/]] he said, [[shadow]]- together,
+[[shadow]]- we will get through this,[[/]] he said, [[shadow]]- together,[[/]] 
 [[toma]]- i do not know how to live on,[[/]] she whispered,
-[[shadow]]- i do not either, but we will try,
+[[shadow]]- i do not either, but we will try,[[/]] 
 buddy came out onto the porch, meowed, jumped onto toma's lap,
 she stroked him, mechanically, as if her hands remembered what to do, though her head did not remember, nothing, only the smell, strawberries, and blood, and cinnamon cookies,
 [[toma]]- i will find him,[[/]] she said, quietly, firmly, as if giving an oath, as if praying, as if dying,
-[[shadow]]- who,
-[[toma]]- the bear,
+[[shadow]]- who,[[/]] 
+[[toma]]- the bear,[[/]] 
 shadow looked at her, for a long time, did not understand, but nodded,
-[[shadow]]- i will help,
-[[toma]]- i know,
+[[shadow]]- i will help,[[/]] 
+[[toma]]- i know,[[/]] 
 they sat on the bench, looked at the cemetery, at the graves, at the crosses, at death, and were silent,
 somewhere in the distance the road roared, people drove somewhere, hurried, lived,
 toma looked at the road and thought, i will find you, wherever you are, in the next life, in the next world, i will find you, and then, then we will see who of us dies first,

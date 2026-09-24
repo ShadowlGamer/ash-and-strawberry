@@ -5,8 +5,7 @@ window.STORY_EN.push({
   title: "volume i — chapter 1, the morning that was the last",
   pages: [
 
-`
-iris woke before everyone else,
+`iris woke before everyone else,
 
 she always woke earlier, at six in the morning, when the sun was just beginning to gild the edge of the sky, she was already sitting on the windowsill with a book, or drawing, or just looking at the street, where the janitor uncle grisha swept the sidewalk, and aunt lyuba walked her dachshund,
 
@@ -14,29 +13,29 @@ today she was drawing,`,
 
 `on a piece of paper, crooked, crumpled, torn from an old notebook, she was drawing something with colored pencils that was supposed to become a house, a big house, with windows, with a chimney, with smoke curling from the chimney like curls,
 
-[[amir]]- iris, why are you not sleeping,[[/]] a sleepy voice, he stood in the doorway, rubbing his eyes with his little fists, the red jacket with the blue stripe was put on crooked, he always put it on himself, proud of his independence,
+[[amir]]- iris, why are you not sleeping,[[/]] a sleepy voice, he stood in the doorway, rubbing his eyes with his little fists, the red sweater with the blue stripe was put on crooked, he always put it on himself, proud of his independence,
 
-[[iris]]- drawing,[[/]] iris answered, [[iris]]- come here,`,
+[[iris]]- drawing,[[/]] iris answered, [[iris]]- come here,[[/]]`,
 
 `amir came over, climbed onto the windowsill, pressed against his sister, she hugged him with one arm, not letting go of the pencil,
 
 [[amir]]- is this our house,[[/]] he asked, poking his finger at the drawing,
 
-[[iris]]- yes, only bigger, and with a garden, and with swings,
+[[iris]]- yes, only bigger, and with a garden, and with swings, [[/]]
 
-[[amir]]- and with a dog,
+[[amir]]- and with a dog, [[/]]
 
-[[iris]]- and with a dog,
+[[iris]]- and with a dog, [[/]]
 
-[[amir]]- and with a cat,
+[[amir]]- and with a cat, [[/]]
 
-[[iris]]- we have buddy,
+[[iris]]- we have buddy, [[/]]
 
-[[amir]]- and another one,
+[[amir]]- and another one, [[/]]
 
 iris laughed, quietly, so as not to wake the parents,
 
-[[iris]]- okay, and another cat, mister clean,
+[[iris]]- okay, and another cat, mister clean, [[/]]
 
 amir nodded, satisfied, pressed closer,
 

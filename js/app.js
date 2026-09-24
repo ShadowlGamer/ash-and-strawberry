@@ -38,7 +38,6 @@
 
   // words that, after a comma, mean the dialogue is still going
   const DIALOGUE_CONTINUES = new Set([
-    // english — first person and friends
     'i','we','me','us','my','our','mine','ours',
     "i'm","i've","i'll","i'd",
     'you','your','yours',
@@ -46,14 +45,12 @@
     'please','yes','no','yeah','nope','okay','ok','well',
     'how','what','where','when','why','who','which',
     'if','that','this','these','those',
-    // russian — first person and friends
     'я','мы','меня','нас','мой','моя','моё','мои','наш','наша','наше','наши',
     'и','но','или','да','нет','пожалуйста','хорошо','ладно','ну','ага',
     'как','что','где','когда','почему','зачем','кто','который',
     'если','это','этот','эта','эти',
   ]);
 
-  // find where dialogue ends and narration begins inside a coloured section
   function findColorEnd(text) {
     let start = 0;
     while (true) {
@@ -70,35 +67,50 @@
     }
   }
 
-  function renderColoredSection(text, cls) {
-    // only colour sections that start with "- " (dialogue marker)
-    if (!text.startsWith('- ')) return text;
-
+  // text = the content between two tags
+  // cls = color class
+  // manualClose = true if the NEXT tag was [[/]] — then no auto-detect
+  function renderColoredSection(text, cls, manualClose) {
+    // user explicitly closed it with [[/]] -> respect exactly
+    if (manualClose) {
+      return `<span class="${cls}">${text}</span>`;
+    }
+    // otherwise auto-trim
     const end = findColorEnd(text);
     if (end >= text.length) {
       return `<span class="${cls}">${text}</span>`;
     }
-    const dialogue = text.slice(0, end);
-    const narration = text.slice(end);
-    return `<span class="${cls}">${dialogue}</span>${narration}`;
+    return `<span class="${cls}">${text.slice(0, end)}</span>${text.slice(end)}`;
   }
 
   function renderText(text) {
     return text.split(/\n{2,}/).map(par => {
       const re = /\[\[(\/|[a-z\-]+)\]\]/g;
-      let out = '';
-      let last = 0;
-      let cls = null;
+      const matches = [];
       let m;
       while ((m = re.exec(par)) !== null) {
-        const before = par.slice(last, m.index);
-        if (before) out += cls ? renderColoredSection(before, cls) : before;
-        if (m[1] === '/') cls = null;
-        else              cls = 'c-' + m[1];
-        last = m.index + m[0].length;
+        matches.push({ index: m.index, end: m.index + m[0].length, tag: m[1] });
       }
-      const rest = par.slice(last);
-      if (rest) out += cls ? renderColoredSection(rest, cls) : rest;
+      let out = '';
+      let pos = 0;
+      let currentCls = null;
+      matches.forEach(match => {
+        const before = par.slice(pos, match.index);
+        if (before) {
+          if (currentCls) {
+            const manualClose = match.tag === '/';
+            out += renderColoredSection(before, currentCls, manualClose);
+          } else {
+            out += before;
+          }
+        }
+        currentCls = match.tag === '/' ? null : 'c-' + match.tag;
+        pos = match.end;
+      });
+      const rest = par.slice(pos);
+      if (rest) {
+        out += currentCls ? renderColoredSection(rest, currentCls, false) : rest;
+      }
       return `<p>${out}</p>`;
     }).join('');
   }
@@ -216,7 +228,6 @@
     });
   }
 
-  // ---------- song pill ----------
   let currentSongId = null;
 
   function renderSong(chapterId) {
@@ -449,7 +460,6 @@
   buildCharList();
   render();
 
-  // ---------- falling ash ----------
   const ctx = el.ashCanvas.getContext('2d');
   let W, H, particles = [];
 

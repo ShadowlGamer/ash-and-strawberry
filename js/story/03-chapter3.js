@@ -8,7 +8,7 @@ window.STORY_EN.push({
 `lara arrived forty minutes later,
 she drove fast, in a service car, with flashing lights but no siren, a siren attracts attention, and attention is noise, noise is a crowd, a crowd is dirt, and there should be no dirt at the scene of a child's murder, no dirt, no extra eyes, no random witnesses who would later tell in interviews how they saw something strange, lara hated such cases, but they were her job,
 she parked by the entrance, an ordinary panel nine story building, gray facade, peeling paint, on the playground, swings that creaked even without wind, on the bench by the entrance sat three women, smoking, looking at lara's car with that special curiosity that only people living in small towns have, they already knew, they always know, rumors spread faster than sound,
-lara got out of the car, straightened her jacket, put on gloves, before even entering the entrance, habit, professional habit,
+lara got out of the car, straightened her sweater, put on gloves, before even entering the entrance, habit, professional habit,
 the entrance smelled of damp and cats, on the first floor, a stroller, old, broken, abandoned, on the second, a bicycle chained to the radiator, on the third, lara stopped, apartment forty four, the door was ajar, not wide open, as if someone had entered and not closed it behind them, or had left,
 lara pushed the door,
 and entered hell,
@@ -24,14 +24,14 @@ his face was gray, not pale, gray, like ash, his eyes, red, inflamed, tears had 
 buddy, the old cat, sat at toma's feet, tail wrapped around his paws, eyes, yellow, round, looked at lara, warily, as if the cat understood something terrible was happening, as if the cat knew more than he could say,`,
 
 `lara crouched down, not close, at a distance, so as not to intrude on their space, so as not to violate their grief,
-[[lara]]- mister said,[[/]] she said quietly, [[lara]]- mrs said,
+[[lara]]- mister said,[[/]] she said quietly, [[lara]]- mrs said,[[/]] 
 toma did not react, did not move, did not blink, as if she did not hear, as if she were far away, where there is no pain, where there is no death, where her daughter is still alive,
 shadow slowly turned his head, looked at lara, for a long time, as if trying to understand who she was, why she had come, what she needed,
-[[lara]]- i am detective lara,[[/]] she said, [[lara]]- i am handling this case, i am very sorry,
+[[lara]]- i am detective lara,[[/]] she said, [[lara]]- i am handling this case, i am very sorry,[[/]] 
 the words sounded empty, she knew it, always knew, there are no words that can comfort a person who has lost a child, no words that can fill this emptiness, but she had to say something, it was part of the job, part of the ritual,
 shadow nodded, slowly, as if every movement required effort,
 [[shadow]]- thank you,[[/]] he said, his voice hoarse, broken, as if he had been screaming for many hours, as if he had been howling,
-[[lara]]- i need to examine the room,[[/]] lara said, [[lara]]- you can stay here, with her,
+[[lara]]- i need to examine the room,[[/]] lara said, [[lara]]- you can stay here, with her,[[/]] 
 she did not say with your wife, did not say with toma, just with her, because toma was not a wife now, not toma, she was a shadow, a shell, a person waiting for pain to kill her completely,
 shadow nodded, pressed toma closer,
 lara stood up, walked past them, deeper into the apartment,`,
@@ -60,46 +60,46 @@ she returned to the corridor,
 toma was still sitting on the floor, had not moved, had not looked, shadow held her hand, his fingers were white, he was squeezing so hard,
 [[lara]]- who has keys to the apartment,[[/]] lara asked,
 shadow slowly raised his head, looked at her, with empty eyes,
-[[shadow]]- i do,[[/]] he said, [[shadow]]- toma, and, white, our friend,
-[[lara]]- white,
-[[shadow]]- yes, he sometimes comes by, waters the flowers, picks up the mail, helps with the housework,
-[[lara]]- last name,
-[[shadow]]- just white, he is, strange, white hair, scar on his cheek, like toma's, only on the other side,
+[[shadow]]- i do,[[/]] he said, [[shadow]]- toma, and, white, our friend,[[/]] 
+[[lara]]- white,[[/]] 
+[[shadow]]- yes, he sometimes comes by, waters the flowers, picks up the mail, helps with the housework,[[/]] 
+[[lara]]- last name,[[/]] 
+[[shadow]]- just white, he is, strange, white hair, scar on his cheek, like toma's, only on the other side,[[/]] 
 lara wrote it down, something clicked in her head, something fell into place, but she did not yet understand what,
-[[lara]]- was he here today,
+[[lara]]- was he here today,[[/]] 
 shadow looked at toma, she did not react,
-[[shadow]]- i do not know,[[/]] he said, [[shadow]]- i was at work, toma, toma was at the store, iris was alone, with amir,
-[[lara]]- amir is your son,
-[[shadow]]- yes, three years old, he,[[/]] shadow stopped, his throat closed, [[shadow]]- he was in his room, when toma returned, he was there, alive, thank god,
+[[shadow]]- i do not know,[[/]] he said, [[shadow]]- i was at work, toma, toma was at the store, iris was alone, with amir,[[/]] 
+[[lara]]- amir is your son,[[/]] 
+[[shadow]]- yes, three years old, he,[[/]] shadow stopped, his throat closed, [[shadow]]- he was in his room, when toma returned, he was there, alive, thank god,[[/]] 
 lara nodded, wrote it down, thank god, for now,
-[[lara]]- we will talk to your friend, white, can you give me his address,
+[[lara]]- we will talk to your friend, white, can you give me his address,[[/]] 
 [[shadow]]- yes, of course,[[/]] shadow gave the address, lara wrote it down,
-[[lara]]- thank you,[[/]] she paused, then said, [[lara]]- i will find the one who did this,
+[[lara]]- thank you,[[/]] she paused, then said, [[lara]]- i will find the one who did this,[[/]] 
 shadow looked at her, for a long time, then said,
-[[shadow]]- you will not bring her back,
-[[lara]]- no, i will not,
-[[shadow]]- then why,
+[[shadow]]- you will not bring her back,[[/]] 
+[[lara]]- no, i will not,[[/]] 
+[[shadow]]- then why,[[/]] 
 lara did not answer, because she did not know the answer, because sometimes there is no answer, because sometimes the only thing you can do is find the one who is guilty, and punish him, not for the victim, not for the family, for yourself, to keep from going mad, to believe that the world still makes sense,`,
 
 `she left the apartment,
 on the landing three policemen waited for her, young, pale, they already knew what was inside, they had already seen, they already could not forget,
-[[lara]]- cordon,[[/]] lara said, [[lara]]- do not let anyone in, do not let anyone out, question the neighbors, everyone, each one, who saw, who heard, who knows,
+[[lara]]- cordon,[[/]] lara said, [[lara]]- do not let anyone in, do not let anyone out, question the neighbors, everyone, each one, who saw, who heard, who knows,[[/]] 
 they nodded, dispersed,
 lara went downstairs, went outside, took off her gloves,
 she stood by the entrance, looked at the playground, at the swings that creaked without wind, at the bench where three women sat, they were still looking, still smoking, still whispering,
 lara approached them,
-[[lara]]- good afternoon,[[/]] she said, [[lara]]- detective lara, did you know the said family,
+[[lara]]- good afternoon,[[/]] she said, [[lara]]- detective lara, did you know the said family,[[/]] 
 the women exchanged glances, then one, fat, in a dressing gown, with curlers on her head, said,
-[[other]]- of course we knew, a good family, toma, so quiet, shadow, hardworking, the children, iris and amir, iris, sunshine, always smiling, always saying hello, amir, still little, but also good,
-[[lara]]- did anyone come to them, often,
-[[other]]- white,[[/]] said the second woman, thin, with a cigarette in her teeth, [[other]]- white one, curly, he came often, helped, toma loved him, like a brother,
+[[other]]- of course we knew, a good family, toma, so quiet, shadow, hardworking, the children, iris and amir, iris, sunshine, always smiling, always saying hello, amir, still little, but also good,[[/]] 
+[[lara]]- did anyone come to them, often,[[/]] 
+[[other]]- white,[[/]] said the second woman, thin, with a cigarette in her teeth, [[other]]- white one, curly, he came often, helped, toma loved him, like a brother,[[/]] 
 [[lara]]- like a brother,[[/]] lara repeated,
-[[other]]- yeah, he played with the children too, iris adored him, baked him cookies, with cinnamon,
+[[other]]- yeah, he played with the children too, iris adored him, baked him cookies, with cinnamon,[[/]] 
 lara froze,
-[[lara]]- with cinnamon,
-[[other]]- yeah, iris said he liked it, she always baked for him, specially,
+[[lara]]- with cinnamon,[[/]] 
+[[other]]- yeah, iris said he liked it, she always baked for him, specially,[[/]] 
 lara closed her eyes, for a second, just to collect herself, just not to scream, then opened them,
-[[lara]]- thank you,[[/]] she said, [[lara]]- you helped a lot,`,
+[[lara]]- thank you,[[/]] she said, [[lara]]- you helped a lot,[[/]] `,
 
 `she returned to the car, sat behind the wheel, took out her notebook, wrote,
 white, white hair, scar on cheek, often visited the house, has keys, iris baked him cookies with cinnamon, one cookie bitten in the kitchen,
@@ -132,34 +132,34 @@ on the porch sat a cat, black, thin, looked at lara with yellow eyes, did not mo
 lara knocked,
 the door opened a minute later,
 white stood on the threshold, white curls, scar on his left cheek, shirt, white, ironed, trousers, dark, clean, smile, kind, friendly,
-[[vait]]- hello,[[/]] he said, [[vait]]- how can i help,
-[[lara]]- detective lara, i am handling the murder of iris said,
+[[vait]]- hello,[[/]] he said, [[vait]]- how can i help,[[/]] 
+[[lara]]- detective lara, i am handling the murder of iris said,[[/]] 
 the smile disappeared, white's face changed, became mournful, sad, his eyes filled with tears,
-[[vait]]- oh god,[[/]] he whispered, [[vait]]- i, i just found out, someone called me, i,
+[[vait]]- oh god,[[/]] he whispered, [[vait]]- i, i just found out, someone called me, i,[[/]] 
 he stopped, leaned against the door frame, as if his legs had given out,
-[[vait]]- i cannot believe it, iris, she was, she was such a bright child, i,
+[[vait]]- i cannot believe it, iris, she was, she was such a bright child, i,[[/]] 
 [[lara]]- may i come in,[[/]] lara asked,
-[[vait]]- yes, of course, forgive me, come in,
+[[vait]]- yes, of course, forgive me, come in,[[/]] 
 he stepped back, let her into the house,
 inside it was clean, even too clean, as if someone had just cleaned, or as if no one had ever lived here, minimalism, no extra things, no photographs, no books, only a table, a chair, a bed in the corner, and a smell, strange, something familiar, something,
 chlorine, it smelled of chlorine, like a hospital, like a morgue,`,
 
 `lara sat on the chair, white remained standing, leaned against the wall, looked at the floor,
 [[lara]]- when did you last see iris,[[/]] lara asked,
-[[vait]]- yesterday,[[/]] white's voice trembled, [[vait]]- i stopped by during the day, helped toma with repairs, the faucet was leaking,
-[[lara]]- were you there when toma went to the store,
-[[vait]]- yes, i stayed with the children, iris baked cookies, with cinnamon, for me, she always baked for me,[[/]] he sobbed, [[vait]]- i ate one, then left, i had things to do,
-[[lara]]- what time did you leave,
-[[vait]]- around twelve, maybe half past twelve,
-[[lara]]- was iris alive when you left,
-[[vait]]- yes, of course, she, she waved to me from the window, smiled, i,
+[[vait]]- yesterday,[[/]] white's voice trembled, [[vait]]- i stopped by during the day, helped toma with repairs, the faucet was leaking,[[/]] 
+[[lara]]- were you there when toma went to the store,[[/]] 
+[[vait]]- yes, i stayed with the children, iris baked cookies, with cinnamon, for me, she always baked for me,[[/]] he sobbed, [[vait]]- i ate one, then left, i had things to do,[[/]] 
+[[lara]]- what time did you leave,[[/]] 
+[[vait]]- around twelve, maybe half past twelve,[[/]] 
+[[lara]]- was iris alive when you left,[[/]] 
+[[vait]]- yes, of course, she, she waved to me from the window, smiled, i,[[/]] 
 he stopped, covered his face with his hands, his shoulders shook,
 lara looked at him, without looking away, she saw his hands, long fingers, well kept nails, clean, without a single scratch,
 she saw his eyes, red from tears, but dry, too dry, as if he had cried on command, as if tears were part of the performance,
 she saw his pose, relaxed, too relaxed, as if he were not afraid, as if he knew she would not prove anything,
-[[lara]]- mister white,[[/]] lara said, [[lara]]- will you allow me to examine your house,
+[[lara]]- mister white,[[/]] lara said, [[lara]]- will you allow me to examine your house,[[/]] 
 he lowered his hands, looked at her, for a long time, then smiled, weakly, sadly,
-[[vait]]- of course, look, i have nothing to hide,
+[[vait]]- of course, look, i have nothing to hide,[[/]] 
 she stood up, walked into the room, looked around,
 bed, made, perfectly, like in a barracks, nightstand, empty, wardrobe, clothes, shirts, trousers, all white, all black, no colors,
 lara opened the wardrobe, ran her hand over the shelves, nothing, then down, to the bottom, where shoes are usually kept,
@@ -167,15 +167,15 @@ her fingers touched something cold, metallic, she pulled it out,
 a scalpel, surgical, sharp, clean, without a single spot of blood, but lara knew, knew what it had done, knew what it had cut, knew what it had killed,
 she turned around,
 white stood in the doorway, smiling,
-[[vait]]- did you find something, detective,
+[[vait]]- did you find something, detective,[[/]] 
 lara looked at him, in her hand was the scalpel, in his eyes, emptiness, cold, bottomless,
 [[lara]]- is this yours,[[/]] she asked,
-[[vait]]- mine, i collect, surgical instruments, it is my hobby,
-[[lara]]- hobby,
-[[vait]]- yes, why, is it illegal,
+[[vait]]- mine, i collect, surgical instruments, it is my hobby,[[/]] 
+[[lara]]- hobby,[[/]] 
+[[vait]]- yes, why, is it illegal,[[/]] 
 lara did not answer, she looked at him, for a long time, very long, then said,
-[[lara]]- i will take this, for examination,
-[[vait]]- please,[[/]] white shrugged, [[vait]]- i have nothing to hide,`,
+[[lara]]- i will take this, for examination,[[/]] 
+[[vait]]- please,[[/]] white shrugged, [[vait]]- i have nothing to hide,[[/]] `,
 
 `lara left the house, on the porch the black cat still sat, looked at her with yellow eyes, did not move, did not meow,
 she got into the car, put the scalpel in a bag, started the engine,
@@ -197,7 +197,7 @@ she closed the notebook, stood up, put on her coat,
 time to go home, time to sleep, but she knew she would not fall asleep, she would lie, look at the ceiling, see iris, see the scalpel, see white's smile,
 she went outside, night, cold, stars,
 she looked at the sky, and whispered,
-[[lara]]- i will find him, iris, i promise, i will find him,
+[[lara]]- i will find him, iris, i promise, i will find him,[[/]] 
 the stars were silent, but it seemed to lara, for a second, that somewhere far away, a girl with braids smiled, and nodded,
 lara got into the car, started the engine, drove home,
 tomorrow would be a new day, a new interrogation, new evidence, a new step toward the truth,

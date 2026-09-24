@@ -14,11 +14,11 @@ the wall was white, ordinary, with a crack in the corner, the very one they had 
 she lost weight, a lot, skin stretched over bones, cheeks hollowed, eyes sunken, two dark pits on a pale face, the scar became brighter, as if pain made it more noticeable, as if grief made it more real, as if her daughter's death reopened the old wound,`,
 
 `she hardly spoke, only sometimes, with buddy, the cat was the only one she spoke to, the only one who listened, the only one who did not expect her to say anything, the only one who was simply there, without words, without questions, without judgment,
-[[toma]]- she baked cookies for him,[[/]] toma said once, to the cat, quietly, in a whisper, as if afraid the walls would hear, [[toma]]- with cinnamon, he liked cinnamon,
+[[toma]]- she baked cookies for him,[[/]] toma said once, to the cat, quietly, in a whisper, as if afraid the walls would hear, [[toma]]- with cinnamon, he liked cinnamon,[[/]] 
 the cat looked at her, with yellow eyes, understanding, was silent, as if he knew, as if he felt, as if he understood more than he could say,
-[[toma]]- i thought he was a friend, i thought he was good, i let him be near my children, i,
+[[toma]]- i thought he was a friend, i thought he was good, i let him be near my children, i,[[/]] 
 she stopped, her throat closed, tears flowed down her cheeks, she did not wipe them, could not, her hands would not rise, her body would not obey, she just sat, and cried, soundlessly, endlessly, the way those cry who have no more tears, the way those cry who have no more strength, the way those cry who have no more life,
-[[toma]]- i did not know,[[/]] she whispered, [[toma]]- i did not know,
+[[toma]]- i did not know,[[/]] she whispered, [[toma]]- i did not know,[[/]] 
 the cat nuzzled her hand, warm, alive, real, the only thing left, the only thing that had not died, the only thing still breathing in this house where everything had long stopped breathing,
 toma stroked him, automatically, as if her hands remembered what to do, though her head did not remember, nothing, only the smell, strawberries, and blood, and cinnamon cookies,
 the smell of strawberries, from iris, from her hair, from her shampoo, the very one she adored, the very one that smelled like summer, the very one toma had never bought, it remained in the store, on the shelf, waiting, waiting for someone to come and take it, but no one would come, never,
@@ -29,10 +29,10 @@ three smells, three deaths, three lives that had ended,`,
 `shadow tried to stir her,
 he cooked, every day, something simple, soup, porridge, scrambled eggs, he did not know how to cook, toma had always cooked, but now he had to, for her, for himself, for what remained,
 he brought her a plate, set it on the table, sat beside her, waited, she looked at the food, did not eat, just looked, as if she did not understand what it was, as if she did not remember why it was, as if she did not know how to eat,
-[[shadow]]- toma,[[/]] he said, [[shadow]]- you have to eat,
-[[toma]]- i do not want to,
-[[shadow]]- you have to,
-[[toma]]- why,
+[[shadow]]- toma,[[/]] he said, [[shadow]]- you have to eat,[[/]] 
+[[toma]]- i do not want to,[[/]] 
+[[shadow]]- you have to,[[/]] 
+[[toma]]- why,[[/]] 
 he did not answer, because he did not know the answer, why eat if your daughter is dead, why breathe if your child is gone, why live if life has lost meaning,
 he himself did not know, but he had to, for toma, for amir, for what remained, for what could still be saved,
 he went to training, every day, not to stay in shape, to release aggression, to drown out pain, to feel something, at least something, besides emptiness,
@@ -40,16 +40,16 @@ he trained until his body fell from exhaustion, then looked at his hands, at the
 physical pain drowned out mental pain, then it returned, stronger, deeper, darker, as if waiting, as if mocking, as if saying, you thought you could run away, you thought you could hide, no, i am always here, i am always with you, i will never leave,
 he did not sleep, could not, every time he closed his eyes, he saw iris, on the bed, with closed eyes, with twenty three cuts, with the smell of strawberries in her hair, with a smile on her lips, with that very smile that had illuminated their home, with that very smile that had now gone out, forever,
 he woke in a cold sweat, looked at toma, she slept, or pretended, her face was calm, but he knew, she was not sleeping, she just could not look at him, could not see his empty eyes, could not hear his silence,
-[[shadow]]- toma,[[/]] he said once, at night, quietly, in a whisper, as if afraid the walls would hear, [[shadow]]- you have to eat,
-[[toma]]- i do not want to,`,
+[[shadow]]- toma,[[/]] he said once, at night, quietly, in a whisper, as if afraid the walls would hear, [[shadow]]- you have to eat,[[/]] 
+[[toma]]- i do not want to,[[/]] `,
 
 `white brought food, soup, porridge, pies, something he cooked himself, or bought, or ordered, toma did not ask, toma did not eat, just looked, as if she did not understand what it was, as if she did not remember why it was, as if she did not know how to eat,
 he sat with her, on the sofa, beside her, too close, too warm, too alive, he spoke quietly, comforted, held her hand, sometimes cried, sometimes just was silent, as if he were a friend, as if he were a brother, as if he were part of the family,
 he brought flowers, white chrysanthemums, iris's favorite flowers, the very ones she had asked to plant under the window, the very ones they had never planted, the very ones that now lay in his hands, white, lush, dead, like iris herself, like her dreams, like her life,
 he put them in a vase, on the table, next to a photograph of iris, smiling, happy, alive, with that very smile that had illuminated their home, with that very smile that had now gone out, forever,
-[[vait]]- she loved these flowers,[[/]] he said, [[vait]]- remember, toma, she asked to plant them under the window, we never planted them,
+[[vait]]- she loved these flowers,[[/]] he said, [[vait]]- remember, toma, she asked to plant them under the window, we never planted them,[[/]] 
 toma nodded, automatically, like an automaton, like a robot, like a person who had already died, but whose body still moved, still spoke, still breathed, as if it did not know it was already dead,
-[[vait]]- she was a special child,[[/]] white continued, [[vait]]- bright, kind, she baked cookies for me, with cinnamon, i will always remember,
+[[vait]]- she was a special child,[[/]] white continued, [[vait]]- bright, kind, she baked cookies for me, with cinnamon, i will always remember,[[/]] 
 toma nodded, tears flowed down her cheeks, she just sat, and cried, soundlessly, endlessly, the way those cry who have no more life,
 she trusted him, she let him be near, she let him hold her hand, she let him comfort her, he looked at her, at her empty eyes, at her broken soul, at her dead body, and felt, something, something he had not felt before, he held her hand, and felt life leaving her, slowly, drop by drop, day by day, hour by hour, minute by minute, this was what he lived for,`,
 
@@ -58,12 +58,12 @@ he did not understand what had happened, he was three years old, he did not unde
 but he felt, something had changed, something in the house had become different, cold, dark, dead, as if someone had turned off the light, as if someone had blown out a candle, as if someone had closed a door, and now they all sat in the dark, and waited, waited for someone to open the door, waited for someone to light the light, waited for someone to return their life,
 but no one came, no one opened, no one lit, no one returned, they were alone, in the dark, in the cold, in the silence,
 he became afraid of being alone, he came to toma, climbed onto her lap, pressed against her, as always, as if everything was fine, as if iris were not dead, as if the world had not collapsed, as if life continued, as if nothing had happened,
-[[amir]]- ii,[[/]] he asked, [[amir]]- where is ii,
+[[amir]]- ii,[[/]] he asked, [[amir]]- where is ii,[[/]] 
 toma did not answer, could not, her throat closed, tears flowed, her hands trembled, she just hugged him, tightly, so tightly that bruises remained, she could not let go, could not lose another, could not,
-[[shadow]]- ii left,[[/]] shadow said, [[shadow]]- ii, went away,
-[[amir]]- where,
-[[shadow]]- far away,
-[[amir]]- will she come back,
+[[shadow]]- ii left,[[/]] shadow said, [[shadow]]- ii, went away,[[/]] 
+[[amir]]- where,[[/]] 
+[[shadow]]- far away,[[/]] 
+[[amir]]- will she come back,[[/]] 
 shadow was silent, could not answer, could not tell the truth, could not say that iris would not come back, never, that iris was dead, that iris was in the grave, that iris was no more, could not, did not want to, did not know how,
 amir did not understand, but he felt, and it was worse, worse than understanding, worse than knowing, worse than anything in the world,`,
 
@@ -77,15 +77,15 @@ it filled all the rooms, all the corners, all the cracks, it was in the living r
 each in their own emptiness, each in their own death,
 silence was everywhere, silence was everything, silence was the only thing left,`,
 
-`and in this silence, amid grief, amid emptiness, amid death, lived amir, a little boy, three years old, red jacket with blue stripe, messy hair, sleepy eyes, he did not understand what was happening, but he felt, and it was worse, worse than understanding, worse than knowing, worse than anything in the world,
+`and in this silence, amid grief, amid emptiness, amid death, lived amir, a little boy, three years old, red sweater with blue stripe, messy hair, sleepy eyes, he did not understand what was happening, but he felt, and it was worse, worse than understanding, worse than knowing, worse than anything in the world,
 he went to toma, climbed onto her lap, pressed against her, as always, as if everything was fine, as if iris were not dead, as if the world had not collapsed, as if life continued, as if nothing had happened,
-[[amir]]- mom,[[/]] he said, [[amir]]- are you crying,
-[[toma]]- no,[[/]] she whispered, [[toma]]- i am not crying,
+[[amir]]- mom,[[/]] he said, [[amir]]- are you crying,[[/]] 
+[[toma]]- no,[[/]] she whispered, [[toma]]- i am not crying,[[/]] 
 but tears flowed down her cheeks, she just sat, and cried,
-[[amir]]- do not cry,[[/]] amir said, [[amir]]- i am with you,
+[[amir]]- do not cry,[[/]] amir said, [[amir]]- i am with you,[[/]] 
 she hugged him, tightly, so tightly that bruises remained, she could not let go, could not lose another, could not,
-[[toma]]- i love you,[[/]] she whispered, [[toma]]- i love you, amir, i love you more than anything in the world,
-[[amir]]- i love you too, mom,
+[[toma]]- i love you,[[/]] she whispered, [[toma]]- i love you, amir, i love you more than anything in the world,[[/]] 
+[[amir]]- i love you too, mom,[[/]] 
 he did not know, and this was mercy, the only mercy in this world,
 toma held him, and thought, i will not give you up, to anyone, never, even if the world collapses, even if the sky falls, even if everything burns, i will not give you up,
 the silence became even denser,
