@@ -123,6 +123,8 @@
     counter:        document.getElementById('counter'),
     prev:           document.getElementById('prev'),
     next:           document.getElementById('next'),
+    arrowPrev:      document.getElementById('arrow-prev'),
+    arrowNext:      document.getElementById('arrow-next'),
     progress:       document.getElementById('progress-bar'),
     toc:            document.getElementById('toc'),
     tocList:        document.getElementById('toc-list'),
@@ -230,6 +232,9 @@
     });
   }
 
+   if (typeof syncArrows === 'function') syncArrows();
+  }
+
   let currentSongId = null;
 
   function renderSong(chapterId) {
@@ -283,8 +288,50 @@
     index = n;
     render();
   }
+
+  // bottom pager
   el.next.addEventListener('click', () => go(1));
   el.prev.addEventListener('click', () => go(-1));
+
+  // side arrows
+  el.arrowNext.addEventListener('click', () => go(1));
+  el.arrowPrev.addEventListener('click', () => go(-1));
+
+  // keep arrow disabled state in sync with pager
+  function syncArrows() {
+    el.arrowPrev.disabled = index === 0;
+    el.arrowNext.disabled = index === flat.length - 1;
+  }
+
+  // ---------- swipe to change pages (mobile) ----------
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let swipeStartTime = 0;
+
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    // ignore swipes inside interactive things
+    const t = e.target;
+    if (t.closest('input, textarea, button, a, .toc, .chars, .settings, .gallery-modal, .chars-modal')) return;
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+    swipeStartTime = Date.now();
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - swipeStartX;
+    const dy = e.changedTouches[0].clientY - swipeStartY;
+    const dt = Date.now() - swipeStartTime;
+
+    // must be fast enough, mostly horizontal, and far enough
+    if (dt > 600) return;
+    if (Math.abs(dx) < 60) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+
+    if (dx < 0) go(1);   // swipe left → next
+    else        go(-1);  // swipe right → previous
+  }, { passive: true });
 
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT') return;

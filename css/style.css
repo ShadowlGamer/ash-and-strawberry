@@ -847,3 +847,55 @@ a { color: var(--accent); }
   .topbar a.support-btn .btn-text { display: none; }
   .topbar a.support-btn .btn-icon { display: inline; }
 }
+/* ---------- side arrow buttons (desktop only) ---------- */
+.arrow-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bg-panel) 85%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  color: var(--text-soft);
+  font-size: 30px;
+  line-height: 1;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 18;
+  padding: 0;
+  padding-bottom: 4px;
+}
+.arrow-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255,154,60,0.08);
+  box-shadow: var(--glow-soft), inset 0 0 14px rgba(255,154,60,0.06);
+  transform: translateY(-50%) scale(1.06);
+}
+.arrow-btn:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.98);
+}
+.arrow-btn:disabled {
+  opacity: 0.15;
+  cursor: not-allowed;
+}
+.arrow-prev { left: 24px; }
+.arrow-next { right: 24px; }
+
+/* show the arrows only on screens wide enough to fit them cleanly */
+@media (min-width: 1000px) {
+  .arrow-btn { display: flex; }
+}
+
+/* on very wide screens, push them a bit further out */
+@media (min-width: 1400px) {
+  .arrow-prev { left: 60px; }
+  .arrow-next { right: 60px; }
+}
