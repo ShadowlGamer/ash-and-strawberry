@@ -38,7 +38,6 @@
     "chapter9":   { en: "chapter 9",   ru: "глава 9" }
   };
 
-  // words that, after a comma, mean the dialogue is still going
   const DIALOGUE_CONTINUES = new Set([
     'i','we','me','us','my','our','mine','ours',
     "i'm","i've","i'll","i'd",
@@ -69,15 +68,10 @@
     }
   }
 
-  // text = the content between two tags
-  // cls = color class
-  // manualClose = true if the NEXT tag was [[/]] — then no auto-detect
   function renderColoredSection(text, cls, manualClose) {
-    // user explicitly closed it with [[/]] -> respect exactly
     if (manualClose) {
       return `<span class="${cls}">${text}</span>`;
     }
-    // otherwise auto-trim
     const end = findColorEnd(text);
     if (end >= text.length) {
       return `<span class="${cls}">${text}</span>`;
@@ -230,9 +224,8 @@
     document.querySelectorAll('.toc-item').forEach((n, i) => {
       n.classList.toggle('active', i === item.ci);
     });
-  }
 
-   if (typeof syncArrows === 'function') syncArrows();
+    syncArrows();
   }
 
   let currentSongId = null;
@@ -310,7 +303,6 @@
 
   document.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
-    // ignore swipes inside interactive things
     const t = e.target;
     if (t.closest('input, textarea, button, a, .toc, .chars, .settings, .gallery-modal, .chars-modal')) return;
     swipeStartX = e.touches[0].clientX;
@@ -324,13 +316,12 @@
     const dy = e.changedTouches[0].clientY - swipeStartY;
     const dt = Date.now() - swipeStartTime;
 
-    // must be fast enough, mostly horizontal, and far enough
     if (dt > 600) return;
     if (Math.abs(dx) < 60) return;
     if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
 
-    if (dx < 0) go(1);   // swipe left → next
-    else        go(-1);  // swipe right → previous
+    if (dx < 0) go(1);
+    else        go(-1);
   }, { passive: true });
 
   document.addEventListener('keydown', e => {
