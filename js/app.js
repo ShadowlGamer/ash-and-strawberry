@@ -94,24 +94,15 @@
     { id: "cream", name: "cream", color: "#e0d5be" }
   ];
 
-  // ---------- robust storage (works even if localStorage is blocked) ----------
   const store = (function () {
     let mem = {};
     function canUseLS() {
-      try {
-        const k = '__ash_test__';
-        localStorage.setItem(k, '1');
-        localStorage.removeItem(k);
-        return true;
-      } catch (e) { return false; }
+      try { const k='__ash_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }
+      catch (e) { return false; }
     }
     function canUseSS() {
-      try {
-        const k = '__ash_test__';
-        sessionStorage.setItem(k, '1');
-        sessionStorage.removeItem(k);
-        return true;
-      } catch (e) { return false; }
+      try { const k='__ash_test__'; sessionStorage.setItem(k,'1'); sessionStorage.removeItem(k); return true; }
+      catch (e) { return false; }
     }
     const ls = canUseLS();
     const ss = canUseSS();
@@ -188,7 +179,6 @@
   let musicMode = store.get('ash-music') || null;
   let currentVolume = parseInt(store.get('ash-volume') || '60', 10) / 100;
 
-  // ---------- i18n ----------
   function applyI18n() {
     document.querySelectorAll('[data-i18n]').forEach(n => {
       const k = n.dataset.i18n;
@@ -200,7 +190,6 @@
     renderGallery();
   }
 
-  // ---------- palette ----------
   function setPalette(id) {
     currentPalette = id;
     document.documentElement.setAttribute('data-theme', id);
@@ -227,7 +216,6 @@
     });
   }
 
-  // ---------- volume ----------
   function setVolume(v0to100) {
     const v = Math.max(0, Math.min(100, v0to100)) / 100;
     currentVolume = v;
@@ -239,7 +227,6 @@
     if (el.volumeReadout) el.volumeReadout.textContent = Math.round(v * 100);
   }
 
-  // ---------- music mode ----------
   function setMusicMode(mode) {
     musicMode = mode;
     store.set('ash-music', mode);
@@ -275,7 +262,6 @@
     document.querySelectorAll('.song-pill').forEach(p => p.classList.remove('playing'));
   }
 
-  // ---------- play / pause music button ----------
   function isMusicPlaying() {
     if (musicMode === 'ambient') return !el.ambientAudio.paused;
     return !el.bgAudio.paused;
@@ -306,7 +292,6 @@
     updateMusicButton();
   });
 
-  // ---------- onboarding ----------
   function openOnboarding() {
     el.onboarding.classList.add('open');
     el.onboarding.setAttribute('aria-hidden', 'false');
@@ -324,15 +309,9 @@
   }
 
   el.onboardBegin.addEventListener('click', () => {
-    // save the flag FIRST so nothing below can prevent it
-    store.set('ash-onboarded', '1');
-    try {
-      if (!musicMode) setMusicMode('chapter');
-      closeOnboarding();
-      if (musicMode === 'ambient') tryStartAmbient();
-    } catch (e) {
-      console.error(e);
-    }
+    if (!musicMode) setMusicMode('chapter');
+    closeOnboarding();
+    if (musicMode === 'ambient') tryStartAmbient();
   });
 
   el.onboardVolume.addEventListener('input', e => {
@@ -353,7 +332,6 @@
     openOnboarding();
   });
 
-  // ---------- text rendering ----------
   function renderText(text) {
     return text.split(/\n{2,}/).map(par => {
       const re = /\[\[(\/|[a-z\-]+)\]\]/g;
@@ -388,13 +366,13 @@
     storySet().forEach((ch, ci) => {
       ch.pages.forEach((pg, pi) => flat.push({ ci, pi, ch, text: pg }));
     });
+    // start on page 1 always, except when switching language mid-read (keepPosition)
     if (keepPosition && prevItem) {
       let fi = flat.findIndex(f => f.ch.id === prevItem.ch.id && f.pi === prevItem.pi);
       if (fi < 0) fi = flat.findIndex(f => f.ch.id === prevItem.ch.id);
       index = fi >= 0 ? fi : 0;
     } else {
-      const saved = parseInt(store.get('ash-pos-' + lang) || '0', 10);
-      index = (!isNaN(saved) && saved >= 0 && saved < flat.length) ? saved : 0;
+      index = 0;
     }
   }
 
@@ -436,7 +414,7 @@
     else if (direction === 'prev') el.page.classList.add('slide-in-left');
     else el.page.classList.add('fade-in');
 
-    store.set('ash-pos-' + lang, index);
+    // NOTE: position is not saved anymore — every refresh starts at page 1
 
     renderSong(ch.id);
 
@@ -447,7 +425,6 @@
     });
   }
 
-  // ---------- song pill ----------
   let currentSongId = null;
 
   function renderSong(chapterId) {
@@ -500,7 +477,6 @@
   el.ambientAudio.addEventListener('play',  updateMusicButton);
   el.ambientAudio.addEventListener('pause', updateMusicButton);
 
-  // ---------- navigation ----------
   function go(delta) {
     if (isAnimating) return;
     const n = index + delta;
@@ -541,7 +517,6 @@
     if (e.key === 'Escape') closeAll();
   });
 
-  // ---------- swipe ----------
   let swipeStartX = 0, swipeStartY = 0, swipeStartTime = 0;
   document.addEventListener('touchstart', e => {
     if (e.touches.length !== 1) return;
@@ -564,7 +539,6 @@
     else        go(-1);
   }, { passive: true });
 
-  // ---------- toc ----------
   function buildToc() {
     el.tocList.innerHTML = '';
     const story = storySet();
@@ -611,7 +585,6 @@
   el.tocClose.addEventListener('click', closeAll);
   el.overlay.addEventListener('click', closeAll);
 
-  // ---------- characters panel ----------
   function buildCharList() {
     el.charsList.innerHTML = '';
     (window.CHARACTERS || []).forEach(c => {
@@ -636,7 +609,6 @@
   });
   el.charsClose.addEventListener('click', closeAll);
 
-  // ---------- gallery ----------
   let galleryIndex = 0;
   function galleryStep(delta) {
     const arr = window.CHARACTERS || [];
@@ -682,7 +654,6 @@
     if (e.target === el.galleryModal) closeAll();
   });
 
-  // ---------- settings / control ----------
   el.settingsToggle.addEventListener('click', () => {
     const wasOpen = el.settings.classList.contains('open');
     closeAll();
@@ -716,14 +687,13 @@
     el.ashCanvas.style.display = 'none';
   }
 
-  // ---------- language ----------
   el.langBtns.forEach(b => {
     b.addEventListener('click', () => {
       if (b.dataset.lang === lang) return;
       lang = b.dataset.lang;
       store.set('ash-lang', lang);
       applyI18n();
-      rebuildFlat(true);
+      rebuildFlat(true);  // keep current page when switching language mid-read
       buildToc();
       buildCharList();
       render();
@@ -735,7 +705,7 @@
   document.documentElement.setAttribute('data-theme', currentPalette);
   setVolume(currentVolume * 100);
   applyI18n();
-  rebuildFlat(false);
+  rebuildFlat(false);      // always start at page 1 on refresh
   buildToc();
   buildCharList();
   buildPaletteGrid();
@@ -745,21 +715,16 @@
     el.modeBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === musicMode));
   }
 
-  // only open onboarding on the very first visit
-  const seenOnboarding = store.get('ash-onboarded') === '1';
-  if (!seenOnboarding) {
-    openOnboarding();
-  } else {
-    if (musicMode === 'ambient') {
-      const kick = () => { tryStartAmbient(); };
-      ['click', 'touchstart', 'keydown'].forEach(evt =>
-        document.addEventListener(evt, kick, { once: true, passive: true })
-      );
-    }
+  // open customize on EVERY load / refresh
+  openOnboarding();
+  if (musicMode === 'ambient') {
+    const kick = () => { tryStartAmbient(); };
+    ['click', 'touchstart', 'keydown'].forEach(evt =>
+      document.addEventListener(evt, kick, { once: true, passive: true })
+    );
   }
   updateMusicButton();
 
-  // ---------- falling ash ----------
   const ctx = el.ashCanvas.getContext('2d');
   let W, H, particles = [];
   function resize() {
