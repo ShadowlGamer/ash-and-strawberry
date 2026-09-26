@@ -42,28 +42,28 @@ in the kitchen white took a cookie bit into it, chewed,
 [[vait]]- delicious,[[/]] he said, [[vait]]- very delicious,[[/]] 
 iris beamed, she had waited for this, waited for him to praise her, waited for him to smile, waited for him to say, you are a real hostess, iris, you will grow up and become the best confectioner in the world, she had waited for this and she got it, almost,
 [[iris]]- really,[[/]] she asked,
-[[vait]]- really,[[/]] he swallowed, looked at her, attentively, for a long time, too long, [[vait]]- iris, do you know that children are dirt,[[/]] `,
+[[vait]]- really,[[/]] he swallowed, looked at her, attentively, for a long time, too long, [[vait]]- iris, do you know that children are worthless disgusting,[[/]] `,
 
 `she froze, the smile disappeared, as if someone turned off the light, as if someone blew out a candle, as if someone closed the door to her small warm world,
 [[iris]]- what,[[/]] 
-[[vait]]- dirt, noise, hindrance,[[/]] his voice was even, calm, as if he were talking about the weather, as if he were talking about something ordinary, as if he were talking about something that did not matter, [[vait]]- you get in the way, all of you, small, dirty, noisy, you ruin everything,[[/]] 
+[[vait]]- worthless disgusting, noise, hindrance,[[/]] his voice was even, calm, as if he were talking about the weather, as if he were talking about something ordinary, as if he were talking about something that did not matter, [[vait]]- you get in the way, all of you, small, worthless disgustingy, noisy, you ruin everything,[[/]] 
 iris backed away, her back touched the table, the plate of cookies trembled, one cookie fell broke, crumbs scattered on the floor,
 [[iris]]- uncle white, you, you are scaring me,[[/]] 
 [[vait]]- i know,[[/]] he stepped forward, [[vait]]- that is how it should be,[[/]] 
 he took a scalpel from his pocket, the metal gleamed in the light of the kitchen lamp, small, sharp, surgical, clean, without a single spot, for now,
-iris looked at the scalpel, did not understand, could not understand, it was too much, too strange, too wrong, uncle white could not take out a scalpel, uncle white could not say children are dirt, uncle white could not look at her with those eyes, empty, cold, dead,
+iris looked at the scalpel, did not understand, could not understand, it was too much, too strange, too wrong, uncle white could not take out a scalpel, uncle white could not say children are worthless disgusting, uncle white could not look at her with those eyes, empty, cold, dead,
 [[iris]]- uncle white,[[/]] she whispered, [[iris]]- please,[[/]] 
 [[vait]]- please,[[/]] he tilted his head to the side, as if surprised, as if he had not expected this word, [[vait]]- please what,[[/]] 
 [[iris]]- do not,[[/]] 
 [[vait]]- do not,[[/]] he smiled, widely, sincerely, as if she had said something funny, [[vait]]- iris, you do not understand, it is necessary, it is needed, it is purification,[[/]] `,
 
 `he stepped forward, she retreated, again, again, back to the wall, to the refrigerator, to the exit, but the exit was behind him, he stood between her and the door, he stood between her and life,
-[[vait]]- do you know what i liked about you,[[/]] he said, [[vait]]- you were sweet, like cookies, like strawberries, like summer, you were, special, i thought maybe you were different, maybe you were not dirt, but no, you are the same, just as noisy, just as sticky, just as in the way,[[/]] 
+[[vait]]- do you know what i liked about you,[[/]] he said, [[vait]]- you were sweet, like cookies, like strawberries, like summer, you were, special, i thought maybe you were different, maybe you were not worthless disgusting, but no, you are the same, just as noisy, just as sticky, just as in the way,[[/]] 
 [[iris]]- mom,[[/]] iris screamed, loudly, desperately, but mom was not there, mom was at the store, mom was buying shampoo, strawberry, for her, [[iris]]- mom,[[/]] 
 [[vait]]- mom is not here,[[/]] white said, [[vait]]- dad is not here, no one is here, only you and me, and this is right, this is how it should be,[[/]] 
 he grabbed her by the arm tightly, so tightly that bruises remained, she tried to break free, could not he was stronger, much stronger, as if someone else lived in him, someone she did not know, someone who had always been there under the mask, under the smile, under uncle white`,
 
-`he dragged her to the children's room, she resisted, scratched, screamed, but he paid no attention, as if he did not hear, as if he were in another place, in his head, in his world where children are dirt, where murder is purification, where everything makes sense, only his sense, only his truth,
+`he dragged her to the children's room, she resisted, scratched, screamed, but he paid no attention, as if he did not hear, as if he were in another place, in his head, in his world where children are worthless disgusting, where murder is purification, where everything makes sense, only his sense, only his truth,
 he pushed her into the room, closed the door, turned the key,
 [[iris]]- uncle white, please,[[/]] iris cried, [[iris]]- i will not make noise, i will be quiet, i will be good, i,[[/]] 
 [[vait]]- you are already good,[[/]] he said, [[vait]]- you are just, extra,[[/]] 
@@ -84,7 +84,7 @@ she looked at white, at his face, at his eyes, empty, cold, dead, and thought, w
 he did not answer, he never answered, he just cut, methodically, calmly, with pleasure, twenty three times, twenty three cuts, twenty three proofs that evil exists, that it is real, that it comes into the house, eats your cookies, plays with your children, and then kills them slowly, with enjoyment`,
 
 `when it was over, he sat on the floor, leaned against the bed looked at her, at the girl, at iris, at the sun he had extinguished, at the summer he had turned into winter, at the life he had taken, just because, because he could,
-[[vait]]- forgive me,[[/]] he said, and there was something in his voice, something that could have been sadness, something that could have been regret, something that could have been human, but it lasted a second then disappeared, as if someone turned off the light, as if someone blew out a candle, as if someone closed the door, [[vait]]- no, do not forgive, you were dirt, i just removed you,[[/]] 
+[[vait]]- forgive me,[[/]] he said, and there was something in his voice, something that could have been sadness, something that could have been regret, something that could have been human, but it lasted a second then disappeared, as if someone turned off the light, as if someone blew out a candle, as if someone closed the door, [[vait]]- no, do not forgive, you were worthless disgusting, i just removed you,[[/]] 
 he stood up, straightened his shirt, looked in the mirror smiled, his usual smile, warm, kind, sincere, like a person who would never hurt anyone, like uncle white, like a family friend,
 he left the children's room, closed the door, went to the kitchen, took another cookie, ate it, slowly, with pleasure, then left the apartment, closed the door, went down the stairs, nodded to a neighbor, smiled, said, good afternoon, as if nothing had happened, as if he had just been visiting, as if he had not left a corpse behind, as if he had not killed a child`,
 

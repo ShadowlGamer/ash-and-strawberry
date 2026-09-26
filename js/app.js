@@ -5,22 +5,52 @@
       characters: "characters",
       gallery: "gallery",
       support: "support",
+      controlBtn: "control",
       previous: "← previous",
       next: "next →",
       fontSize: "font size",
       fallingAsh: "falling ash",
-      aSong: "a song"
+      volumeLabel: "volume",
+      musicLabel: "music",
+      aSong: "a song",
+      playMusic: "play music",
+      pauseMusic: "pause music",
+      onboardingTitle: "customize your reading",
+      onboardingSub: "choose a palette, a soundtrack, and a volume. you can change these any time.",
+      chooseTheme: "palette",
+      chooseMusic: "music",
+      musicChapterT: "by chapter",
+      musicChapterD: "a recommended song opens on each chapter that has one",
+      musicAmbientT: "ambient",
+      musicAmbientD: "one calm track plays softly the whole way through",
+      begin: "begin",
+      reopenCustomize: "customize again"
     },
     ru: {
       contents: "содержание",
       characters: "персонажи",
       gallery: "галерея",
       support: "поддержать",
+      controlBtn: "управление",
       previous: "← назад",
       next: "вперед →",
       fontSize: "размер шрифта",
       fallingAsh: "падающий пепел",
-      aSong: "песня"
+      volumeLabel: "громкость",
+      musicLabel: "музыка",
+      aSong: "песня",
+      playMusic: "включить музыку",
+      pauseMusic: "пауза",
+      onboardingTitle: "настрой чтение",
+      onboardingSub: "выбери палитру, музыку и громкость. можешь менять их в любое время.",
+      chooseTheme: "палитра",
+      chooseMusic: "музыка",
+      musicChapterT: "по главам",
+      musicChapterD: "рекомендованная песня открывается в каждой главе, где она есть",
+      musicAmbientT: "фоновая",
+      musicAmbientD: "одна спокойная композиция тихо играет всё время",
+      begin: "начать",
+      reopenCustomize: "настроить заново"
     }
   };
 
@@ -35,81 +65,69 @@
     "chapter6":   { en: "chapter 6",   ru: "глава 6" },
     "chapter7":   { en: "chapter 7",   ru: "глава 7" },
     "chapter8":   { en: "chapter 8",   ru: "глава 8" },
-    "chapter9":   { en: "chapter 9",   ru: "глава 9" }
+    "chapter9":   { en: "chapter 9",   ru: "глава 9" },
+    "chapter10":  { en: "chapter 10",  ru: "глава 10" },
+    "chapter11":  { en: "chapter 11",  ru: "глава 11" },
+    "chapter12":  { en: "chapter 12",  ru: "глава 12" },
+    "chapter13":  { en: "chapter 13",  ru: "глава 13" },
+    "chapter14":  { en: "chapter 14",  ru: "глава 14" },
+    "chapter15":  { en: "chapter 15",  ru: "глава 15" }
   };
 
-  const DIALOGUE_CONTINUES = new Set([
-    'i','we','me','us','my','our','mine','ours',
-    "i'm","i've","i'll","i'd",
-    'you','your','yours',
-    'and','but','or','so','yet','for','nor',
-    'please','yes','no','yeah','nope','okay','ok','well',
-    'how','what','where','when','why','who','which',
-    'if','that','this','these','those',
-    'я','мы','меня','нас','мой','моя','моё','мои','наш','наша','наше','наши',
-    'и','но','или','да','нет','пожалуйста','хорошо','ладно','ну','ага',
-    'как','что','где','когда','почему','зачем','кто','который',
-    'если','это','этот','эта','эти',
-  ]);
+  const VOLUMES = [
+    { label: { en: "prologue",            ru: "пролог" },
+      chapters: ["prologue"] },
+    { label: { en: "volume i",            ru: "том i" },
+      chapters: ["chapter1","chapter2","chapter3","chapter3-5","chapter4","chapter5","chapter6","chapter7","chapter8","chapter9"] },
+    { label: { en: "volume ii — shadows", ru: "том ii — тени" },
+      chapters: ["chapter10","chapter11","chapter12","chapter13","chapter14"] },
+    { label: { en: "volume iii — ash",    ru: "том iii — пепел" },
+      chapters: ["chapter15"] }
+  ];
 
-  function findColorEnd(text) {
-    let start = 0;
-    while (true) {
-      const commaIdx = text.indexOf(',', start);
-      if (commaIdx < 0) return text.length;
-      const after = text.slice(commaIdx + 1).replace(/^\s+/, '');
-      const m = after.match(/^([a-zA-Zа-яА-ЯёЁ']+)/);
-      const nextWord = m ? m[1].toLowerCase() : '';
-      if (DIALOGUE_CONTINUES.has(nextWord)) {
-        start = commaIdx + 1;
-        continue;
-      }
-      return commaIdx + 1;
-    }
-  }
+  const PALETTES = [
+    { id: "ember", name: "ember", color: "#ff9a3c" },
+    { id: "frost", name: "frost", color: "#66d4ff" },
+    { id: "fern",  name: "fern",  color: "#7ddf8c" },
+    { id: "rose",  name: "rose",  color: "#ff7eb6" },
+    { id: "mono",  name: "mono",  color: "#dcdcdc" },
+    { id: "cream", name: "cream", color: "#e0d5be" }
+  ];
 
-  function renderColoredSection(text, cls, manualClose) {
-    if (manualClose) {
-      return `<span class="${cls}">${text}</span>`;
+  // ---------- robust storage (works even if localStorage is blocked) ----------
+  const store = (function () {
+    let mem = {};
+    function canUseLS() {
+      try {
+        const k = '__ash_test__';
+        localStorage.setItem(k, '1');
+        localStorage.removeItem(k);
+        return true;
+      } catch (e) { return false; }
     }
-    const end = findColorEnd(text);
-    if (end >= text.length) {
-      return `<span class="${cls}">${text}</span>`;
+    function canUseSS() {
+      try {
+        const k = '__ash_test__';
+        sessionStorage.setItem(k, '1');
+        sessionStorage.removeItem(k);
+        return true;
+      } catch (e) { return false; }
     }
-    return `<span class="${cls}">${text.slice(0, end)}</span>${text.slice(end)}`;
-  }
-
-  function renderText(text) {
-    return text.split(/\n{2,}/).map(par => {
-      const re = /\[\[(\/|[a-z\-]+)\]\]/g;
-      const matches = [];
-      let m;
-      while ((m = re.exec(par)) !== null) {
-        matches.push({ index: m.index, end: m.index + m[0].length, tag: m[1] });
+    const ls = canUseLS();
+    const ss = canUseSS();
+    return {
+      get(k) {
+        if (ls) { try { return localStorage.getItem(k); } catch(e){} }
+        if (ss) { try { return sessionStorage.getItem(k); } catch(e){} }
+        return mem[k] || null;
+      },
+      set(k, v) {
+        mem[k] = String(v);
+        if (ls) { try { localStorage.setItem(k, v); } catch(e){} }
+        if (ss) { try { sessionStorage.setItem(k, v); } catch(e){} }
       }
-      let out = '';
-      let pos = 0;
-      let currentCls = null;
-      matches.forEach(match => {
-        const before = par.slice(pos, match.index);
-        if (before) {
-          if (currentCls) {
-            const manualClose = match.tag === '/';
-            out += renderColoredSection(before, currentCls, manualClose);
-          } else {
-            out += before;
-          }
-        }
-        currentCls = match.tag === '/' ? null : 'c-' + match.tag;
-        pos = match.end;
-      });
-      const rest = par.slice(pos);
-      if (rest) {
-        out += currentCls ? renderColoredSection(rest, currentCls, false) : rest;
-      }
-      return `<p>${out}</p>`;
-    }).join('');
-  }
+    };
+  })();
 
   const el = {
     page:           document.getElementById('page'),
@@ -119,6 +137,8 @@
     next:           document.getElementById('next'),
     arrowPrev:      document.getElementById('arrow-prev'),
     arrowNext:      document.getElementById('arrow-next'),
+    edgeLeft:       document.getElementById('edge-left'),
+    edgeRight:      document.getElementById('edge-right'),
     progress:       document.getElementById('progress-bar'),
     toc:            document.getElementById('toc'),
     tocList:        document.getElementById('toc-list'),
@@ -127,8 +147,10 @@
     overlay:        document.getElementById('overlay'),
     settings:       document.getElementById('settings'),
     settingsToggle: document.getElementById('settings-toggle'),
+    settingsCustomize: document.getElementById('settings-customize'),
     fontSize:       document.getElementById('font-size'),
     ashToggle:      document.getElementById('ash-toggle'),
+    settingsVolume: document.getElementById('settings-volume'),
     ashCanvas:      document.getElementById('ash'),
     chars:          document.getElementById('chars'),
     charsList:      document.getElementById('chars-list'),
@@ -144,18 +166,29 @@
     galleryNext:    document.getElementById('gallery-next'),
     galleryToggle:  document.getElementById('gallery-toggle'),
     galleryClose:   document.getElementById('gallery-close'),
-    themeToggle:    document.getElementById('theme-toggle'),
     songRow:        document.getElementById('song-row'),
     langBtns:       document.querySelectorAll('.lang-btn'),
-    bgAudio:        document.getElementById('bg-audio')
+    bgAudio:        document.getElementById('bg-audio'),
+    ambientAudio:   document.getElementById('ambient-audio'),
+    customizeToggle:document.getElementById('customize-toggle'),
+    onboarding:     document.getElementById('onboarding'),
+    paletteGrid:    document.getElementById('palette-grid'),
+    onboardBegin:   document.getElementById('onboard-begin'),
+    onboardVolume:  document.getElementById('onboard-volume'),
+    volumeReadout:  document.getElementById('volume-readout'),
+    musicOpts:      document.querySelectorAll('.music-opt'),
+    modeBtns:       document.querySelectorAll('.mode-btn'),
+    musicPlayPause: document.getElementById('music-playpause'),
+    musicPlayIcon:  document.getElementById('music-playpause-icon'),
+    musicPlayLabel: document.getElementById('music-playpause-label')
   };
 
-  let lang = localStorage.getItem('ash-lang') || 'en';
+  let lang = store.get('ash-lang') || 'en';
+  let currentPalette = store.get('ash-palette') || 'ember';
+  let musicMode = store.get('ash-music') || null;
+  let currentVolume = parseInt(store.get('ash-volume') || '60', 10) / 100;
 
-  function storySet() {
-    return (lang === 'ru' ? window.STORY_RU : window.STORY_EN) || [];
-  }
-
+  // ---------- i18n ----------
   function applyI18n() {
     document.querySelectorAll('[data-i18n]').forEach(n => {
       const k = n.dataset.i18n;
@@ -163,11 +196,191 @@
     });
     el.langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     document.documentElement.lang = lang;
+    updateMusicButton();
     renderGallery();
+  }
+
+  // ---------- palette ----------
+  function setPalette(id) {
+    currentPalette = id;
+    document.documentElement.setAttribute('data-theme', id);
+    store.set('ash-palette', id);
+    document.querySelectorAll('.palette-opt').forEach(b => {
+      b.classList.toggle('active', b.dataset.palette === id);
+    });
+    redrawAsh();
+  }
+
+  function buildPaletteGrid() {
+    el.paletteGrid.innerHTML = '';
+    PALETTES.forEach(p => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'palette-opt';
+      b.dataset.palette = p.id;
+      b.innerHTML =
+        `<span class="palette-dot" style="background:${p.color};color:${p.color}"></span>` +
+        `<span class="palette-name">${p.name}</span>`;
+      if (p.id === currentPalette) b.classList.add('active');
+      b.addEventListener('click', () => setPalette(p.id));
+      el.paletteGrid.appendChild(b);
+    });
+  }
+
+  // ---------- volume ----------
+  function setVolume(v0to100) {
+    const v = Math.max(0, Math.min(100, v0to100)) / 100;
+    currentVolume = v;
+    el.bgAudio.volume = v;
+    el.ambientAudio.volume = v;
+    store.set('ash-volume', Math.round(v * 100));
+    if (el.onboardVolume) el.onboardVolume.value = Math.round(v * 100);
+    if (el.settingsVolume) el.settingsVolume.value = Math.round(v * 100);
+    if (el.volumeReadout) el.volumeReadout.textContent = Math.round(v * 100);
+  }
+
+  // ---------- music mode ----------
+  function setMusicMode(mode) {
+    musicMode = mode;
+    store.set('ash-music', mode);
+    el.musicOpts.forEach(b => b.classList.toggle('active', b.dataset.music === mode));
+    el.modeBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    if (mode === 'ambient') {
+      stopChapterSong();
+      tryStartAmbient();
+    } else {
+      stopAmbient();
+    }
+    const chId = flat[index] ? flat[index].ch.id : null;
+    renderSong(chId);
+    updateMusicButton();
+  }
+
+  function tryStartAmbient() {
+    if (musicMode !== 'ambient') return;
+    el.ambientAudio.volume = currentVolume;
+    if (!el.ambientAudio.src) el.ambientAudio.src = 'audio/ambient.mp3';
+    el.ambientAudio.play().catch(() => {});
+    updateMusicButton();
+  }
+
+  function stopAmbient() {
+    el.ambientAudio.pause();
+    updateMusicButton();
+  }
+
+  function stopChapterSong() {
+    el.bgAudio.pause();
+    currentSongId = null;
+    document.querySelectorAll('.song-pill').forEach(p => p.classList.remove('playing'));
+  }
+
+  // ---------- play / pause music button ----------
+  function isMusicPlaying() {
+    if (musicMode === 'ambient') return !el.ambientAudio.paused;
+    return !el.bgAudio.paused;
+  }
+
+  function updateMusicButton() {
+    if (!el.musicPlayPause) return;
+    const playing = isMusicPlaying();
+    el.musicPlayPause.classList.toggle('playing', playing);
+    el.musicPlayIcon.textContent = playing ? '❚❚' : '▶';
+    el.musicPlayLabel.textContent = playing ? I18N[lang].pauseMusic : I18N[lang].playMusic;
+  }
+
+  el.musicPlayPause.addEventListener('click', () => {
+    if (musicMode === 'ambient') {
+      if (el.ambientAudio.paused) tryStartAmbient();
+      else stopAmbient();
+    } else {
+      if (!currentSongId) {
+        const s = (window.SONGS || {})[flat[index] && flat[index].ch.id];
+        if (s && s.title && s.url) toggleSong(flat[index].ch.id, s);
+      } else {
+        if (el.bgAudio.paused) el.bgAudio.play().catch(() => {});
+        else                   el.bgAudio.pause();
+      }
+      updatePillStates();
+    }
+    updateMusicButton();
+  });
+
+  // ---------- onboarding ----------
+  function openOnboarding() {
+    el.onboarding.classList.add('open');
+    el.onboarding.setAttribute('aria-hidden', 'false');
+    if (el.onboardVolume) el.onboardVolume.value = Math.round(currentVolume * 100);
+    if (el.volumeReadout) el.volumeReadout.textContent = Math.round(currentVolume * 100);
+    el.musicOpts.forEach(b => b.classList.toggle('active', b.dataset.music === musicMode));
+    document.querySelectorAll('.palette-opt').forEach(b => {
+      b.classList.toggle('active', b.dataset.palette === currentPalette);
+    });
+  }
+
+  function closeOnboarding() {
+    el.onboarding.classList.remove('open');
+    el.onboarding.setAttribute('aria-hidden', 'true');
+  }
+
+  el.onboardBegin.addEventListener('click', () => {
+    // save the flag FIRST so nothing below can prevent it
+    store.set('ash-onboarded', '1');
+    try {
+      if (!musicMode) setMusicMode('chapter');
+      closeOnboarding();
+      if (musicMode === 'ambient') tryStartAmbient();
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  el.onboardVolume.addEventListener('input', e => {
+    setVolume(parseInt(e.target.value, 10));
+  });
+
+  el.musicOpts.forEach(b => {
+    b.addEventListener('click', () => setMusicMode(b.dataset.music));
+  });
+
+  el.customizeToggle.addEventListener('click', () => {
+    closeAll();
+    openOnboarding();
+  });
+
+  el.settingsCustomize.addEventListener('click', () => {
+    closeAll();
+    openOnboarding();
+  });
+
+  // ---------- text rendering ----------
+  function renderText(text) {
+    return text.split(/\n{2,}/).map(par => {
+      const re = /\[\[(\/|[a-z\-]+)\]\]/g;
+      let out = '';
+      let last = 0;
+      let cls = null;
+      let m;
+      while ((m = re.exec(par)) !== null) {
+        const before = par.slice(last, m.index);
+        if (before) out += cls ? `<span class="${cls}">${before}</span>` : before;
+        if (m[1] === '/') cls = null;
+        else              cls = 'c-' + m[1];
+        last = m.index + m[0].length;
+      }
+      const rest = par.slice(last);
+      if (rest) out += cls ? `<span class="${cls}">${rest}</span>` : rest;
+      return `<p>${out}</p>`;
+    }).join('');
   }
 
   let flat = [];
   let index = 0;
+  let isAnimating = false;
+
+  function storySet() {
+    return (lang === 'ru' ? window.STORY_RU : window.STORY_EN) || [];
+  }
 
   function rebuildFlat(keepPosition) {
     const prevItem = flat[index];
@@ -180,12 +393,12 @@
       if (fi < 0) fi = flat.findIndex(f => f.ch.id === prevItem.ch.id);
       index = fi >= 0 ? fi : 0;
     } else {
-      const saved = parseInt(localStorage.getItem('ash-pos-' + lang) || '0', 10);
+      const saved = parseInt(store.get('ash-pos-' + lang) || '0', 10);
       index = (!isNaN(saved) && saved >= 0 && saved < flat.length) ? saved : 0;
     }
   }
 
-  function render() {
+  function render(direction) {
     if (!flat.length) {
       el.page.innerHTML = '<p>loading…</p>';
       el.chapterLabel.textContent = '';
@@ -210,36 +423,43 @@
 
     el.prev.disabled = index === 0;
     el.next.disabled = index === flat.length - 1;
+    el.arrowPrev.disabled = index === 0;
+    el.arrowNext.disabled = index === flat.length - 1;
+    el.edgeLeft.classList.toggle('disabled', index === 0);
+    el.edgeRight.classList.toggle('disabled', index === flat.length - 1);
 
-    el.page.classList.remove('fade-in');
+    el.page.classList.remove(
+      'fade-in','slide-out-left','slide-out-right','slide-in-right','slide-in-left'
+    );
     void el.page.offsetWidth;
-    el.page.classList.add('fade-in');
+    if (direction === 'next') el.page.classList.add('slide-in-right');
+    else if (direction === 'prev') el.page.classList.add('slide-in-left');
+    else el.page.classList.add('fade-in');
 
-    localStorage.setItem('ash-pos-' + lang, index);
+    store.set('ash-pos-' + lang, index);
 
     renderSong(ch.id);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    document.querySelectorAll('.toc-item').forEach((n, i) => {
-      n.classList.toggle('active', i === item.ci);
+    document.querySelectorAll('.toc-item').forEach(n => {
+      n.classList.toggle('active', parseInt(n.dataset.ci, 10) === item.ci);
     });
-
-    syncArrows();
   }
 
+  // ---------- song pill ----------
   let currentSongId = null;
 
   function renderSong(chapterId) {
     el.songRow.innerHTML = '';
+    if (musicMode !== 'chapter') return;
+    if (!chapterId) return;
     const s = (window.SONGS || {})[chapterId];
     if (!s || !s.title) return;
 
     const pill = document.createElement('button');
     pill.className = 'song-pill';
-    if (currentSongId === chapterId && !el.bgAudio.paused) {
-      pill.classList.add('playing');
-    }
+    if (currentSongId === chapterId && !el.bgAudio.paused) pill.classList.add('playing');
     pill.innerHTML =
       `<span class="song-note">♪</span>` +
       `<span>${s.title}</span>` +
@@ -254,13 +474,16 @@
       if (el.bgAudio.paused) el.bgAudio.play().catch(() => {});
       else                   el.bgAudio.pause();
       updatePillStates();
+      updateMusicButton();
       return;
     }
     currentSongId = chapterId;
     el.bgAudio.src = s.url;
     el.bgAudio.currentTime = 0;
+    el.bgAudio.volume = currentVolume;
     el.bgAudio.play().catch(() => {});
     updatePillStates();
+    updateMusicButton();
   }
 
   function updatePillStates() {
@@ -271,61 +494,42 @@
     }
   }
 
-  el.bgAudio.addEventListener('play',  updatePillStates);
-  el.bgAudio.addEventListener('pause', updatePillStates);
-  el.bgAudio.addEventListener('ended', updatePillStates);
+  el.bgAudio.addEventListener('play',  () => { updatePillStates(); updateMusicButton(); });
+  el.bgAudio.addEventListener('pause', () => { updatePillStates(); updateMusicButton(); });
+  el.bgAudio.addEventListener('ended', () => { updatePillStates(); updateMusicButton(); });
+  el.ambientAudio.addEventListener('play',  updateMusicButton);
+  el.ambientAudio.addEventListener('pause', updateMusicButton);
 
+  // ---------- navigation ----------
   function go(delta) {
+    if (isAnimating) return;
     const n = index + delta;
     if (n < 0 || n >= flat.length) return;
-    index = n;
-    render();
+    const dir = delta > 0 ? 'next' : 'prev';
+
+    isAnimating = true;
+    el.page.classList.remove('slide-in-right','slide-in-left','fade-in');
+    el.page.classList.add(dir === 'next' ? 'slide-out-left' : 'slide-out-right');
+
+    setTimeout(() => {
+      index = n;
+      el.page.classList.remove('slide-out-left', 'slide-out-right');
+      render(dir);
+      isAnimating = false;
+    }, 180);
   }
 
-  // bottom pager
   el.next.addEventListener('click', () => go(1));
   el.prev.addEventListener('click', () => go(-1));
-
-  // side arrows
-  el.arrowNext.addEventListener('click', () => go(1));
-  el.arrowPrev.addEventListener('click', () => go(-1));
-
-  // keep arrow disabled state in sync with pager
-  function syncArrows() {
-    el.arrowPrev.disabled = index === 0;
-    el.arrowNext.disabled = index === flat.length - 1;
-  }
-
-  // ---------- swipe to change pages (mobile) ----------
-  let swipeStartX = 0;
-  let swipeStartY = 0;
-  let swipeStartTime = 0;
-
-  document.addEventListener('touchstart', (e) => {
-    if (e.touches.length !== 1) return;
-    const t = e.target;
-    if (t.closest('input, textarea, button, a, .toc, .chars, .settings, .gallery-modal, .chars-modal')) return;
-    swipeStartX = e.touches[0].clientX;
-    swipeStartY = e.touches[0].clientY;
-    swipeStartTime = Date.now();
-  }, { passive: true });
-
-  document.addEventListener('touchend', (e) => {
-    if (e.changedTouches.length !== 1) return;
-    const dx = e.changedTouches[0].clientX - swipeStartX;
-    const dy = e.changedTouches[0].clientY - swipeStartY;
-    const dt = Date.now() - swipeStartTime;
-
-    if (dt > 600) return;
-    if (Math.abs(dx) < 60) return;
-    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
-
-    if (dx < 0) go(1);
-    else        go(-1);
-  }, { passive: true });
+  el.edgeRight.addEventListener('click', () => go(1));
+  el.edgeLeft.addEventListener('click', () => go(-1));
 
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT') return;
+    if (el.onboarding.classList.contains('open')) {
+      if (e.key === 'Escape') closeOnboarding();
+      return;
+    }
     if (el.galleryModal.classList.contains('open')) {
       if (e.key === 'ArrowRight') { galleryStep(1); return; }
       if (e.key === 'ArrowLeft')  { galleryStep(-1); return; }
@@ -337,41 +541,77 @@
     if (e.key === 'Escape') closeAll();
   });
 
+  // ---------- swipe ----------
+  let swipeStartX = 0, swipeStartY = 0, swipeStartTime = 0;
+  document.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    const t = e.target;
+    if (t.closest('input, textarea, button, a, .toc, .chars, .settings, .gallery-modal, .onboarding')) return;
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+    swipeStartTime = Date.now();
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - swipeStartX;
+    const dy = e.changedTouches[0].clientY - swipeStartY;
+    const dt = Date.now() - swipeStartTime;
+    if (dt > 600) return;
+    if (Math.abs(dx) < 60) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (dx < 0) go(1);
+    else        go(-1);
+  }, { passive: true });
+
+  // ---------- toc ----------
   function buildToc() {
     el.tocList.innerHTML = '';
-    storySet().forEach((ch, i) => {
-      const b = document.createElement('button');
-      b.className = 'toc-item';
-      const lbl = SHORT_LABELS[ch.id];
-      b.textContent = lbl ? lbl[lang] : ch.title;
-      b.addEventListener('click', () => {
-        const fi = flat.findIndex(f => f.ci === i);
-        if (fi >= 0) {
-          index = fi; render();
-          el.toc.classList.remove('open');
-          el.overlay.classList.remove('show');
-        }
+    const story = storySet();
+    VOLUMES.forEach(vol => {
+      const chapters = vol.chapters
+        .map(id => story.find(c => c.id === id))
+        .filter(Boolean);
+      if (!chapters.length) return;
+
+      const h = document.createElement('div');
+      h.className = 'toc-volume';
+      h.textContent = vol.label[lang];
+      el.tocList.appendChild(h);
+
+      chapters.forEach(ch => {
+        const ci = story.indexOf(ch);
+        const b = document.createElement('button');
+        b.className = 'toc-item';
+        const lbl = SHORT_LABELS[ch.id];
+        b.textContent = lbl ? lbl[lang] : ch.title;
+        b.dataset.ci = ci;
+        b.addEventListener('click', () => {
+          const fi = flat.findIndex(f => f.ci === ci);
+          if (fi >= 0) { index = fi; render(); closeAll(); }
+        });
+        el.tocList.appendChild(b);
       });
-      el.tocList.appendChild(b);
     });
   }
 
-  function closeToc()      { el.toc.classList.remove('open'); if (!el.chars.classList.contains('open')) el.overlay.classList.remove('show'); }
-  function closeChars()    { el.chars.classList.remove('open'); el.charsToggle.classList.remove('active'); }
-  function closeSettings() { el.settings.classList.remove('open'); }
-  function closeGallery()  { el.galleryModal.classList.remove('open'); }
-  function closeAll()      { closeToc(); closeChars(); closeSettings(); closeGallery(); el.overlay.classList.remove('show'); }
+  function closeAll() {
+    el.toc.classList.remove('open');
+    el.chars.classList.remove('open');
+    el.settings.classList.remove('open');
+    el.galleryModal.classList.remove('open');
+    el.overlay.classList.remove('show');
+  }
 
   el.tocToggle.addEventListener('click', () => {
     const wasOpen = el.toc.classList.contains('open');
-    if (wasOpen) { closeToc(); return; }
-    closeSettings(); closeChars();
-    el.toc.classList.add('open');
-    el.overlay.classList.add('show');
+    closeAll();
+    if (!wasOpen) { el.toc.classList.add('open'); el.overlay.classList.add('show'); }
   });
-  el.tocClose.addEventListener('click', closeToc);
-  el.overlay.addEventListener('click', closeToc);
+  el.tocClose.addEventListener('click', closeAll);
+  el.overlay.addEventListener('click', closeAll);
 
+  // ---------- characters panel ----------
   function buildCharList() {
     el.charsList.innerHTML = '';
     (window.CHARACTERS || []).forEach(c => {
@@ -390,15 +630,14 @@
   }
 
   el.charsToggle.addEventListener('click', () => {
-    if (el.chars.classList.contains('open')) { closeChars(); return; }
-    closeSettings(); closeToc();
-    el.chars.classList.add('open');
-    el.charsToggle.classList.add('active');
+    const wasOpen = el.chars.classList.contains('open');
+    closeAll();
+    if (!wasOpen) el.chars.classList.add('open');
   });
-  el.charsClose.addEventListener('click', closeChars);
+  el.charsClose.addEventListener('click', closeAll);
 
+  // ---------- gallery ----------
   let galleryIndex = 0;
-
   function galleryStep(delta) {
     const arr = window.CHARACTERS || [];
     if (!arr.length) return;
@@ -410,13 +649,10 @@
     const arr = window.CHARACTERS || [];
     if (!arr.length || !el.galleryImg) return;
     const c = arr[galleryIndex];
-
     el.galleryName.textContent = c[lang] || c.en;
     el.galleryName.style.color = c.color;
     el.galleryCounter.textContent = (galleryIndex + 1) + ' / ' + arr.length;
-
     el.galleryFrame.style.background = c.color;
-
     el.galleryFallback.classList.remove('show');
     el.galleryFallback.style.background = c.color;
     el.galleryImg.style.display = '';
@@ -436,73 +672,96 @@
   el.galleryToggle.addEventListener('click', () => {
     galleryIndex = 0;
     renderGallery();
+    closeAll();
     el.galleryModal.classList.add('open');
   });
-  el.galleryClose.addEventListener('click', closeGallery);
+  el.galleryClose.addEventListener('click', closeAll);
   el.galleryPrev.addEventListener('click', () => galleryStep(-1));
   el.galleryNext.addEventListener('click', () => galleryStep(1));
   el.galleryModal.addEventListener('click', e => {
-    if (e.target === el.galleryModal) closeGallery();
+    if (e.target === el.galleryModal) closeAll();
   });
 
+  // ---------- settings / control ----------
   el.settingsToggle.addEventListener('click', () => {
     const wasOpen = el.settings.classList.contains('open');
-    closeSettings(); closeToc(); closeChars();
+    closeAll();
     if (!wasOpen) el.settings.classList.add('open');
+  });
+
+  el.modeBtns.forEach(b => {
+    b.addEventListener('click', () => setMusicMode(b.dataset.mode));
   });
 
   el.fontSize.addEventListener('input', e => {
     document.documentElement.style.setProperty('--fs', e.target.value + 'px');
-    localStorage.setItem('ash-fs', e.target.value);
+    store.set('ash-fs', e.target.value);
   });
-  const savedFs = localStorage.getItem('ash-fs');
+  const savedFs = store.get('ash-fs');
   if (savedFs) {
     el.fontSize.value = savedFs;
     document.documentElement.style.setProperty('--fs', savedFs + 'px');
   }
 
+  el.settingsVolume.addEventListener('input', e => {
+    setVolume(parseInt(e.target.value, 10));
+  });
+
   el.ashToggle.addEventListener('change', e => {
     el.ashCanvas.style.display = e.target.checked ? 'block' : 'none';
-    localStorage.setItem('ash-on', e.target.checked ? '1' : '0');
+    store.set('ash-on', e.target.checked ? '1' : '0');
   });
-  if (localStorage.getItem('ash-on') === '0') {
+  if (store.get('ash-on') === '0') {
     el.ashToggle.checked = false;
     el.ashCanvas.style.display = 'none';
   }
 
-  const savedTheme = localStorage.getItem('ash-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-
-  el.themeToggle.addEventListener('click', () => {
-    const cur = document.documentElement.getAttribute('data-theme');
-    const next = cur === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('ash-theme', next);
-    redrawAsh();
-  });
-
+  // ---------- language ----------
   el.langBtns.forEach(b => {
     b.addEventListener('click', () => {
       if (b.dataset.lang === lang) return;
       lang = b.dataset.lang;
-      localStorage.setItem('ash-lang', lang);
+      store.set('ash-lang', lang);
       applyI18n();
       rebuildFlat(true);
       buildToc();
       buildCharList();
       render();
+      if (el.onboarding.classList.contains('open')) openOnboarding();
     });
   });
 
+  // ---------- boot ----------
+  document.documentElement.setAttribute('data-theme', currentPalette);
+  setVolume(currentVolume * 100);
   applyI18n();
   rebuildFlat(false);
   buildToc();
   buildCharList();
+  buildPaletteGrid();
   render();
 
+  if (musicMode) {
+    el.modeBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === musicMode));
+  }
+
+  // only open onboarding on the very first visit
+  const seenOnboarding = store.get('ash-onboarded') === '1';
+  if (!seenOnboarding) {
+    openOnboarding();
+  } else {
+    if (musicMode === 'ambient') {
+      const kick = () => { tryStartAmbient(); };
+      ['click', 'touchstart', 'keydown'].forEach(evt =>
+        document.addEventListener(evt, kick, { once: true, passive: true })
+      );
+    }
+  }
+  updateMusicButton();
+
+  // ---------- falling ash ----------
   const ctx = el.ashCanvas.getContext('2d');
   let W, H, particles = [];
-
   function resize() {
     W = el.ashCanvas.width  = window.innerWidth;
     H = el.ashCanvas.height = window.innerHeight;
@@ -511,24 +770,22 @@
   window.addEventListener('resize', resize);
 
   function redrawAsh() {
-    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    const cream = currentPalette === 'cream';
     particles.forEach(p => {
-      p.warmColor = light ? 'rgba(160,110,50,'  + p.o + ')' : 'rgba(255,170,90,' + p.o + ')';
-      p.coolColor = light ? 'rgba(120,90,60,'   + p.o + ')' : 'rgba(200,180,160,' + p.o + ')';
+      p.warmColor = cream ? 'rgba(160,110,50,'  + p.o + ')' : 'rgba(255,170,90,' + p.o + ')';
+      p.coolColor = cream ? 'rgba(120,90,60,'   + p.o + ')' : 'rgba(200,180,160,' + p.o + ')';
     });
   }
 
   for (let i = 0; i < 60; i++) {
     particles.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
+      x: Math.random() * W, y: Math.random() * H,
       r: Math.random() * 1.6 + 0.4,
       s: Math.random() * 0.35 + 0.08,
       d: Math.random() * Math.PI * 2,
       o: Math.random() * 0.35 + 0.08,
       warm: Math.random() > 0.55,
-      warmColor: '',
-      coolColor: ''
+      warmColor: '', coolColor: ''
     });
   }
   redrawAsh();
