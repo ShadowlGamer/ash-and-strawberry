@@ -189,13 +189,13 @@
 (function () {
   var v = Date.now();
 
-  // css — bumped with the same timestamp so stylesheet never caches either
+  // css — fresh timestamp each load
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = 'css/style.css?v=' + v;
   document.head.appendChild(link);
 
-  // js — loaded strictly one after another with callbacks, so app.js always runs last
+  // js — parallel download, ordered execution (async=false guarantees order)
   var files = [
     'js/characters.js',
     'js/songs.js',
@@ -239,16 +239,12 @@
     'js/app.js'
   ];
 
-  var i = 0;
-  function loadNext() {
-    if (i >= files.length) return;
+  files.forEach(function (src) {
     var s = document.createElement('script');
-    s.src = files[i++] + '?v=' + v;
-    s.onload = loadNext;
-    s.onerror = loadNext; // keep going even if one file fails
+    s.src = src + '?v=' + v;
+    s.async = false; // parallel download, ordered execution
     document.head.appendChild(s);
-  }
-  loadNext();
+  });
 })();
 </script>
 </body>
