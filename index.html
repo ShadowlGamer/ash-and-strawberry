@@ -8,57 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<script>
-(function(){
-  var v = Date.now();
-  var css = ['css/style.css'];
-  var js = [
-    'js/characters.js',
-    'js/songs.js',
-
-    'js/story/00-prologue.js',
-    'js/story/01-chapter1.js',
-    'js/story/02-chapter2.js',
-    'js/story/03-chapter3.js',
-    'js/story/04-chapter3-5.js',
-    'js/story/05-chapter4.js',
-    'js/story/06-chapter5.js',
-    'js/story/07-chapter6.js',
-    'js/story/08-chapter7.js',
-    'js/story/09-chapter8.js',
-    'js/story/10-chapter9.js',
-    'js/story/11-chapter10.js',
-    'js/story/12-chapter11.js',
-    'js/story/13-chapter12.js',
-    'js/story/14-chapter13.js',
-    'js/story/15-chapter14.js',
-    'js/story/16-chapter15.js',
-
-    'js/story/ru/00-prologue.js',
-    'js/story/ru/01-chapter1.js',
-    'js/story/ru/02-chapter2.js',
-    'js/story/ru/03-chapter3.js',
-    'js/story/ru/04-chapter3-5.js',
-    'js/story/ru/05-chapter4.js',
-    'js/story/ru/06-chapter5.js',
-    'js/story/ru/07-chapter6.js',
-    'js/story/ru/08-chapter7.js',
-    'js/story/ru/09-chapter8.js',
-    'js/story/ru/10-chapter9.js',
-    'js/story/ru/11-chapter10.js',
-    'js/story/ru/12-chapter11.js',
-    'js/story/ru/13-chapter12.js',
-    'js/story/ru/14-chapter13.js',
-    'js/story/ru/15-chapter14.js',
-    'js/story/ru/16-chapter15.js',
-
-    'js/app.js'
-  ];
-  css.forEach(function(h){ document.write('<link rel="stylesheet" href="' + h + '?v=' + v + '">'); });
-  js.forEach(function(s){ document.write('<script src="' + s + '?v=' + v + '"><\/script>'); });
-})();
-</script>
 </head>
 <body>
 <canvas id="ash"></canvas>
@@ -235,5 +184,72 @@
 
 <audio id="bg-audio" preload="auto"></audio>
 <audio id="ambient-audio" preload="auto" loop></audio>
+
+<script>
+(function () {
+  var v = Date.now();
+
+  // css — bumped with the same timestamp so stylesheet never caches either
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'css/style.css?v=' + v;
+  document.head.appendChild(link);
+
+  // js — loaded strictly one after another with callbacks, so app.js always runs last
+  var files = [
+    'js/characters.js',
+    'js/songs.js',
+
+    'js/story/00-prologue.js',
+    'js/story/01-chapter1.js',
+    'js/story/02-chapter2.js',
+    'js/story/03-chapter3.js',
+    'js/story/04-chapter3-5.js',
+    'js/story/05-chapter4.js',
+    'js/story/06-chapter5.js',
+    'js/story/07-chapter6.js',
+    'js/story/08-chapter7.js',
+    'js/story/09-chapter8.js',
+    'js/story/10-chapter9.js',
+    'js/story/11-chapter10.js',
+    'js/story/12-chapter11.js',
+    'js/story/13-chapter12.js',
+    'js/story/14-chapter13.js',
+    'js/story/15-chapter14.js',
+    'js/story/16-chapter15.js',
+
+    'js/story/ru/00-prologue.js',
+    'js/story/ru/01-chapter1.js',
+    'js/story/ru/02-chapter2.js',
+    'js/story/ru/03-chapter3.js',
+    'js/story/ru/04-chapter3-5.js',
+    'js/story/ru/05-chapter4.js',
+    'js/story/ru/06-chapter5.js',
+    'js/story/ru/07-chapter6.js',
+    'js/story/ru/08-chapter7.js',
+    'js/story/ru/09-chapter8.js',
+    'js/story/ru/10-chapter9.js',
+    'js/story/ru/11-chapter10.js',
+    'js/story/ru/12-chapter11.js',
+    'js/story/ru/13-chapter12.js',
+    'js/story/ru/14-chapter13.js',
+    'js/story/ru/15-chapter14.js',
+    'js/story/ru/16-chapter15.js',
+
+    'js/app.js'
+  ];
+
+  var i = 0;
+  function loadNext() {
+    if (i >= files.length) return;
+    var s = document.createElement('script');
+    s.src = files[i++] + '?v=' + v;
+    s.onload = loadNext;
+    s.onerror = loadNext; // keep going even if one file fails
+    document.head.appendChild(s);
+  }
+  loadNext();
+})();
+</script>
 </body>
 </html>
