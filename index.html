@@ -5,11 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ash and strawberry</title>
 
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+<meta name="description" content="an interactive reading of the story ash and strawberry.">
+<meta property="og:title" content="ash and strawberry">
+<meta property="og:description" content="an interactive reading of the story ash and strawberry.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ash-and-strawberry.l.cd/">
+<meta property="og:image" content="https://ash-and-strawberry.l.cd/images/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ash and strawberry">
+<meta name="twitter:description" content="an interactive reading of the story ash and strawberry.">
+<meta name="twitter:image" content="https://ash-and-strawberry.l.cd/images/og-preview.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body>
 <canvas id="ash"></canvas>
@@ -127,6 +142,7 @@
       </div>
       <button id="gallery-next" class="gallery-nav" aria-label="next">→</button>
     </div>
+    <div class="gallery-thumbs" id="gallery-thumbs"></div>
     <div class="gallery-footer">
       <div id="gallery-name" class="gallery-name"></div>
       <div id="gallery-counter" class="gallery-counter"></div>
@@ -187,45 +203,65 @@
 <audio id="bg-audio" preload="auto"></audio>
 <audio id="ambient-audio" preload="auto" loop></audio>
 
-<script src="js/characters.js"></script>
-<script src="js/songs.js"></script>
+<script>
+(function () {
+  var v = Date.now();
 
-<script src="js/story/00-prologue.js"></script>
-<script src="js/story/01-chapter1.js"></script>
-<script src="js/story/02-chapter2.js"></script>
-<script src="js/story/03-chapter3.js"></script>
-<script src="js/story/04-chapter3-5.js"></script>
-<script src="js/story/05-chapter4.js"></script>
-<script src="js/story/06-chapter5.js"></script>
-<script src="js/story/07-chapter6.js"></script>
-<script src="js/story/08-chapter7.js"></script>
-<script src="js/story/09-chapter8.js"></script>
-<script src="js/story/10-chapter9.js"></script>
-<script src="js/story/11-chapter10.js"></script>
-<script src="js/story/12-chapter11.js"></script>
-<script src="js/story/13-chapter12.js"></script>
-<script src="js/story/14-chapter13.js"></script>
-<script src="js/story/15-chapter14.js"></script>
-<script src="js/story/16-chapter15.js"></script>
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'css/style.css?v=' + v;
+  document.head.appendChild(link);
 
-<script src="js/story/ru/00-prologue.js"></script>
-<script src="js/story/ru/01-chapter1.js"></script>
-<script src="js/story/ru/02-chapter2.js"></script>
-<script src="js/story/ru/03-chapter3.js"></script>
-<script src="js/story/ru/04-chapter3-5.js"></script>
-<script src="js/story/ru/05-chapter4.js"></script>
-<script src="js/story/ru/06-chapter5.js"></script>
-<script src="js/story/ru/07-chapter6.js"></script>
-<script src="js/story/ru/08-chapter7.js"></script>
-<script src="js/story/ru/09-chapter8.js"></script>
-<script src="js/story/ru/10-chapter9.js"></script>
-<script src="js/story/ru/11-chapter10.js"></script>
-<script src="js/story/ru/12-chapter11.js"></script>
-<script src="js/story/ru/13-chapter12.js"></script>
-<script src="js/story/ru/14-chapter13.js"></script>
-<script src="js/story/ru/15-chapter14.js"></script>
-<script src="js/story/ru/16-chapter15.js"></script>
+  var files = [
+    'js/characters.js',
+    'js/songs.js',
 
-<script src="js/app.js?v=6"></script>
+    'js/story/00-prologue.js',
+    'js/story/01-chapter1.js',
+    'js/story/02-chapter2.js',
+    'js/story/03-chapter3.js',
+    'js/story/04-chapter3-5.js',
+    'js/story/05-chapter4.js',
+    'js/story/06-chapter5.js',
+    'js/story/07-chapter6.js',
+    'js/story/08-chapter7.js',
+    'js/story/09-chapter8.js',
+    'js/story/10-chapter9.js',
+    'js/story/11-chapter10.js',
+    'js/story/12-chapter11.js',
+    'js/story/13-chapter12.js',
+    'js/story/14-chapter13.js',
+    'js/story/15-chapter14.js',
+    'js/story/16-chapter15.js',
+
+    'js/story/ru/00-prologue.js',
+    'js/story/ru/01-chapter1.js',
+    'js/story/ru/02-chapter2.js',
+    'js/story/ru/03-chapter3.js',
+    'js/story/ru/04-chapter3-5.js',
+    'js/story/ru/05-chapter4.js',
+    'js/story/ru/06-chapter5.js',
+    'js/story/ru/07-chapter6.js',
+    'js/story/ru/08-chapter7.js',
+    'js/story/ru/09-chapter8.js',
+    'js/story/ru/10-chapter9.js',
+    'js/story/ru/11-chapter10.js',
+    'js/story/ru/12-chapter11.js',
+    'js/story/ru/13-chapter12.js',
+    'js/story/ru/14-chapter13.js',
+    'js/story/ru/15-chapter14.js',
+    'js/story/ru/16-chapter15.js',
+
+    'js/app.js'
+  ];
+
+  files.forEach(function (src) {
+    var s = document.createElement('script');
+    s.src = src + '?v=' + v;
+    s.async = false;
+    document.head.appendChild(s);
+  });
+})();
+</script>
 </body>
 </html>

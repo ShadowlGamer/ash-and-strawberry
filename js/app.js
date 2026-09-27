@@ -24,7 +24,9 @@
       musicAmbientT: "ambient",
       musicAmbientD: "one calm track plays softly the whole way through",
       begin: "begin",
-      reopenCustomize: "customize again"
+      reopenCustomize: "customize again",
+      theEnd: "the end",
+      minShort: "min"
     },
     ru: {
       contents: "содержание",
@@ -50,7 +52,9 @@
       musicAmbientT: "фоновая",
       musicAmbientD: "одна спокойная композиция тихо играет всё время",
       begin: "начать",
-      reopenCustomize: "настроить заново"
+      reopenCustomize: "настроить заново",
+      theEnd: "конец",
+      minShort: "мин"
     }
   };
 
@@ -94,24 +98,15 @@
     { id: "cream", name: "cream", color: "#e0d5be" }
   ];
 
-  // ---------- robust storage (works even if localStorage is blocked) ----------
   const store = (function () {
     let mem = {};
     function canUseLS() {
-      try {
-        const k = '__ash_test__';
-        localStorage.setItem(k, '1');
-        localStorage.removeItem(k);
-        return true;
-      } catch (e) { return false; }
+      try { const k='__ash_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }
+      catch (e) { return false; }
     }
     function canUseSS() {
-      try {
-        const k = '__ash_test__';
-        sessionStorage.setItem(k, '1');
-        sessionStorage.removeItem(k);
-        return true;
-      } catch (e) { return false; }
+      try { const k='__ash_test__'; sessionStorage.setItem(k,'1'); sessionStorage.removeItem(k); return true; }
+      catch (e) { return false; }
     }
     const ls = canUseLS();
     const ss = canUseSS();
@@ -160,6 +155,7 @@
     galleryImg:     document.getElementById('gallery-img'),
     galleryFallback:document.getElementById('gallery-fallback'),
     galleryFrame:   document.getElementById('gallery-frame'),
+    galleryThumbs:  document.getElementById('gallery-thumbs'),
     galleryName:    document.getElementById('gallery-name'),
     galleryCounter: document.getElementById('gallery-counter'),
     galleryPrev:    document.getElementById('gallery-prev'),
@@ -188,7 +184,6 @@
   let musicMode = store.get('ash-music') || null;
   let currentVolume = parseInt(store.get('ash-volume') || '60', 10) / 100;
 
-  // ---------- i18n ----------
   function applyI18n() {
     document.querySelectorAll('[data-i18n]').forEach(n => {
       const k = n.dataset.i18n;
@@ -200,7 +195,6 @@
     renderGallery();
   }
 
-  // ---------- palette ----------
   function setPalette(id) {
     currentPalette = id;
     document.documentElement.setAttribute('data-theme', id);
@@ -227,7 +221,6 @@
     });
   }
 
-  // ---------- volume ----------
   function setVolume(v0to100) {
     const v = Math.max(0, Math.min(100, v0to100)) / 100;
     currentVolume = v;
@@ -239,7 +232,6 @@
     if (el.volumeReadout) el.volumeReadout.textContent = Math.round(v * 100);
   }
 
-  // ---------- music mode ----------
   function setMusicMode(mode) {
     musicMode = mode;
     store.set('ash-music', mode);
@@ -275,7 +267,6 @@
     document.querySelectorAll('.song-pill').forEach(p => p.classList.remove('playing'));
   }
 
-  // ---------- play / pause music button ----------
   function isMusicPlaying() {
     if (musicMode === 'ambient') return !el.ambientAudio.paused;
     return !el.bgAudio.paused;
@@ -306,7 +297,6 @@
     updateMusicButton();
   });
 
-  // ---------- onboarding ----------
   function openOnboarding() {
     el.onboarding.classList.add('open');
     el.onboarding.setAttribute('aria-hidden', 'false');
@@ -317,43 +307,22 @@
       b.classList.toggle('active', b.dataset.palette === currentPalette);
     });
   }
-
   function closeOnboarding() {
     el.onboarding.classList.remove('open');
     el.onboarding.setAttribute('aria-hidden', 'true');
   }
 
   el.onboardBegin.addEventListener('click', () => {
-    // save the flag FIRST so nothing below can prevent it
-    store.set('ash-onboarded', '1');
-    try {
-      if (!musicMode) setMusicMode('chapter');
-      closeOnboarding();
-      if (musicMode === 'ambient') tryStartAmbient();
-    } catch (e) {
-      console.error(e);
-    }
+    if (!musicMode) setMusicMode('chapter');
+    closeOnboarding();
+    if (musicMode === 'ambient') tryStartAmbient();
   });
 
-  el.onboardVolume.addEventListener('input', e => {
-    setVolume(parseInt(e.target.value, 10));
-  });
+  el.onboardVolume.addEventListener('input', e => setVolume(parseInt(e.target.value, 10)));
+  el.musicOpts.forEach(b => b.addEventListener('click', () => setMusicMode(b.dataset.music)));
+  el.customizeToggle.addEventListener('click', () => { closeAll(); openOnboarding(); });
+  el.settingsCustomize.addEventListener('click', () => { closeAll(); openOnboarding(); });
 
-  el.musicOpts.forEach(b => {
-    b.addEventListener('click', () => setMusicMode(b.dataset.music));
-  });
-
-  el.customizeToggle.addEventListener('click', () => {
-    closeAll();
-    openOnboarding();
-  });
-
-  el.settingsCustomize.addEventListener('click', () => {
-    closeAll();
-    openOnboarding();
-  });
-
-  // ---------- text rendering ----------
   function renderText(text) {
     return text.split(/\n{2,}/).map(par => {
       const re = /\[\[(\/|[a-z\-]+)\]\]/g;
@@ -372,6 +341,47 @@
       if (rest) out += cls ? `<span class="${cls}">${rest}</span>` : rest;
       return `<p>${out}</p>`;
     }).join('');
+  }
+
+  function countWords(text) {
+    const stripped = text.replace(/\[\[[^\]]+\]\]/g, ' ');
+    return stripped.trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  // sum every page of the chapter, not just the current page
+  function readingTimeOfChapter(ch) {
+    let total = 0;
+    ch.pages.forEach(p => { total += countWords(p); });
+    return Math.max(1, Math.round(total / 220));
+  }
+
+  // wraps every word inside `root` in a span with a staggered animation delay
+  function applyWordReveal(root) {
+    let wordIndex = 0;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) {
+      if (node.nodeValue && node.nodeValue.trim()) textNodes.push(node);
+    }
+    textNodes.forEach(textNode => {
+      const parts = textNode.nodeValue.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      parts.forEach(part => {
+        if (/\S/.test(part)) {
+          const span = document.createElement('span');
+          span.className = 'word';
+          span.textContent = part;
+          // cap total reveal at ~2.6s no matter how many words
+          span.style.animationDelay = (wordIndex * 18) + 'ms';
+          wordIndex++;
+          frag.appendChild(span);
+        } else {
+          frag.appendChild(document.createTextNode(part));
+        }
+      });
+      textNode.parentNode.replaceChild(frag, textNode);
+    });
   }
 
   let flat = [];
@@ -393,9 +403,27 @@
       if (fi < 0) fi = flat.findIndex(f => f.ch.id === prevItem.ch.id);
       index = fi >= 0 ? fi : 0;
     } else {
-      const saved = parseInt(store.get('ash-pos-' + lang) || '0', 10);
-      index = (!isNaN(saved) && saved >= 0 && saved < flat.length) ? saved : 0;
+      index = 0;
     }
+  }
+
+  function isLastPageOfChapter() {
+    if (!flat.length) return false;
+    const item = flat[index];
+    return item.pi === item.ch.pages.length - 1;
+  }
+
+  function isLastPageOfStory() {
+    return index === flat.length - 1;
+  }
+
+  function nextChapterLabel() {
+    const item = flat[index];
+    if (!item) return null;
+    const next = flat.find((f, i) => i > index && f.ch.id !== item.ch.id);
+    if (!next) return null;
+    const lbl = SHORT_LABELS[next.ch.id];
+    return lbl ? lbl[lang] : next.ch.title;
   }
 
   function render(direction) {
@@ -409,7 +437,10 @@
     const ch = item.ch;
 
     const lbl = SHORT_LABELS[ch.id];
-    el.chapterLabel.textContent = lbl ? lbl[lang] : ch.title;
+    const chName = lbl ? lbl[lang] : ch.title;
+    const rMin = readingTimeOfChapter(ch);
+    el.chapterLabel.innerHTML =
+      `<span>${chName}</span><span class="divider">·</span><span>${rMin} ${I18N[lang].minShort}</span>`;
 
     let html = '';
     if (item.pi === 0 && ch.title) {
@@ -418,11 +449,27 @@
     html += renderText(item.text);
     el.page.innerHTML = html;
 
+    // word-by-word reveal
+    applyWordReveal(el.page);
+
     el.counter.textContent  = (index + 1) + ' / ' + flat.length;
     el.progress.style.width = ((index + 1) / flat.length * 100) + '%';
 
     el.prev.disabled = index === 0;
-    el.next.disabled = index === flat.length - 1;
+
+    const lastOfChapter = isLastPageOfChapter();
+    const lastOfStory   = isLastPageOfStory();
+    el.next.disabled = lastOfStory;
+    el.next.classList.toggle('chapter-next', lastOfChapter && !lastOfStory);
+    if (lastOfStory) {
+      el.next.textContent = I18N[lang].theEnd;
+    } else if (lastOfChapter) {
+      const nxt = nextChapterLabel();
+      el.next.textContent = nxt ? ('begin ' + nxt + ' →') : I18N[lang].next;
+    } else {
+      el.next.textContent = I18N[lang].next;
+    }
+
     el.arrowPrev.disabled = index === 0;
     el.arrowNext.disabled = index === flat.length - 1;
     el.edgeLeft.classList.toggle('disabled', index === 0);
@@ -436,8 +483,6 @@
     else if (direction === 'prev') el.page.classList.add('slide-in-left');
     else el.page.classList.add('fade-in');
 
-    store.set('ash-pos-' + lang, index);
-
     renderSong(ch.id);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -447,7 +492,6 @@
     });
   }
 
-  // ---------- song pill ----------
   let currentSongId = null;
 
   function renderSong(chapterId) {
@@ -500,7 +544,6 @@
   el.ambientAudio.addEventListener('play',  updateMusicButton);
   el.ambientAudio.addEventListener('pause', updateMusicButton);
 
-  // ---------- navigation ----------
   function go(delta) {
     if (isAnimating) return;
     const n = index + delta;
@@ -541,7 +584,6 @@
     if (e.key === 'Escape') closeAll();
   });
 
-  // ---------- swipe ----------
   let swipeStartX = 0, swipeStartY = 0, swipeStartTime = 0;
   document.addEventListener('touchstart', e => {
     if (e.touches.length !== 1) return;
@@ -551,7 +593,6 @@
     swipeStartY = e.touches[0].clientY;
     swipeStartTime = Date.now();
   }, { passive: true });
-
   document.addEventListener('touchend', e => {
     if (e.changedTouches.length !== 1) return;
     const dx = e.changedTouches[0].clientX - swipeStartX;
@@ -564,21 +605,16 @@
     else        go(-1);
   }, { passive: true });
 
-  // ---------- toc ----------
   function buildToc() {
     el.tocList.innerHTML = '';
     const story = storySet();
     VOLUMES.forEach(vol => {
-      const chapters = vol.chapters
-        .map(id => story.find(c => c.id === id))
-        .filter(Boolean);
+      const chapters = vol.chapters.map(id => story.find(c => c.id === id)).filter(Boolean);
       if (!chapters.length) return;
-
       const h = document.createElement('div');
       h.className = 'toc-volume';
       h.textContent = vol.label[lang];
       el.tocList.appendChild(h);
-
       chapters.forEach(ch => {
         const ci = story.indexOf(ch);
         const b = document.createElement('button');
@@ -611,7 +647,6 @@
   el.tocClose.addEventListener('click', closeAll);
   el.overlay.addEventListener('click', closeAll);
 
-  // ---------- characters panel ----------
   function buildCharList() {
     el.charsList.innerHTML = '';
     (window.CHARACTERS || []).forEach(c => {
@@ -636,13 +671,42 @@
   });
   el.charsClose.addEventListener('click', closeAll);
 
-  // ---------- gallery ----------
   let galleryIndex = 0;
   function galleryStep(delta) {
     const arr = window.CHARACTERS || [];
     if (!arr.length) return;
     galleryIndex = (galleryIndex + delta + arr.length) % arr.length;
     renderGallery();
+  }
+
+  function buildGalleryThumbs() {
+    if (!el.galleryThumbs) return;
+    el.galleryThumbs.innerHTML = '';
+    (window.CHARACTERS || []).forEach((c, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'gallery-thumb';
+      b.title = c[lang] || c.en;
+      b.dataset.idx = i;
+      b.style.background = c.color;
+
+      const img = document.createElement('img');
+      img.src = `images/characters/${c.id}.png`;
+      img.alt = c[lang] || c.en;
+      img.onerror = () => {
+        img.remove();
+        const fb = document.createElement('span');
+        fb.textContent = (c[lang] || c.en).charAt(0);
+        b.appendChild(fb);
+      };
+      b.appendChild(img);
+
+      b.addEventListener('click', () => {
+        galleryIndex = i;
+        renderGallery();
+      });
+      el.galleryThumbs.appendChild(b);
+    });
   }
 
   function renderGallery() {
@@ -667,6 +731,12 @@
     };
     el.galleryImg.src = `images/characters/${c.id}.png`;
     el.galleryImg.alt = c[lang] || c.en;
+
+    if (el.galleryThumbs) {
+      el.galleryThumbs.querySelectorAll('.gallery-thumb').forEach((b, i) => {
+        b.classList.toggle('active', i === galleryIndex);
+      });
+    }
   }
 
   el.galleryToggle.addEventListener('click', () => {
@@ -682,16 +752,13 @@
     if (e.target === el.galleryModal) closeAll();
   });
 
-  // ---------- settings / control ----------
   el.settingsToggle.addEventListener('click', () => {
     const wasOpen = el.settings.classList.contains('open');
     closeAll();
     if (!wasOpen) el.settings.classList.add('open');
   });
 
-  el.modeBtns.forEach(b => {
-    b.addEventListener('click', () => setMusicMode(b.dataset.mode));
-  });
+  el.modeBtns.forEach(b => b.addEventListener('click', () => setMusicMode(b.dataset.mode)));
 
   el.fontSize.addEventListener('input', e => {
     document.documentElement.style.setProperty('--fs', e.target.value + 'px');
@@ -703,9 +770,7 @@
     document.documentElement.style.setProperty('--fs', savedFs + 'px');
   }
 
-  el.settingsVolume.addEventListener('input', e => {
-    setVolume(parseInt(e.target.value, 10));
-  });
+  el.settingsVolume.addEventListener('input', e => setVolume(parseInt(e.target.value, 10)));
 
   el.ashToggle.addEventListener('change', e => {
     el.ashCanvas.style.display = e.target.checked ? 'block' : 'none';
@@ -716,7 +781,6 @@
     el.ashCanvas.style.display = 'none';
   }
 
-  // ---------- language ----------
   el.langBtns.forEach(b => {
     b.addEventListener('click', () => {
       if (b.dataset.lang === lang) return;
@@ -726,12 +790,12 @@
       rebuildFlat(true);
       buildToc();
       buildCharList();
+      buildGalleryThumbs();
       render();
       if (el.onboarding.classList.contains('open')) openOnboarding();
     });
   });
 
-  // ---------- boot ----------
   document.documentElement.setAttribute('data-theme', currentPalette);
   setVolume(currentVolume * 100);
   applyI18n();
@@ -739,27 +803,22 @@
   buildToc();
   buildCharList();
   buildPaletteGrid();
+  buildGalleryThumbs();
   render();
 
   if (musicMode) {
     el.modeBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === musicMode));
   }
 
-  // only open onboarding on the very first visit
-  const seenOnboarding = store.get('ash-onboarded') === '1';
-  if (!seenOnboarding) {
-    openOnboarding();
-  } else {
-    if (musicMode === 'ambient') {
-      const kick = () => { tryStartAmbient(); };
-      ['click', 'touchstart', 'keydown'].forEach(evt =>
-        document.addEventListener(evt, kick, { once: true, passive: true })
-      );
-    }
+  openOnboarding();
+  if (musicMode === 'ambient') {
+    const kick = () => { tryStartAmbient(); };
+    ['click', 'touchstart', 'keydown'].forEach(evt =>
+      document.addEventListener(evt, kick, { once: true, passive: true })
+    );
   }
   updateMusicButton();
 
-  // ---------- falling ash ----------
   const ctx = el.ashCanvas.getContext('2d');
   let W, H, particles = [];
   function resize() {
